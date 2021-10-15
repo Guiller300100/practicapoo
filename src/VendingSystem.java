@@ -8,8 +8,17 @@ public class VendingSystem {
 
 	}
 
+	public int MaquinasOperativas() {
+		int total=0;
+		for(int i =0; i<maquinas.size();i++) {
+			if(maquinas.get(i).getEstado()) {
+				total++;
+			}
+		}
+		return total;
+	}
 	public void ListaMaquinas() {
-
+		maquinas.values();
 	}
 
 	public void NuevaMaquina(int id) {

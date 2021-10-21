@@ -1,38 +1,54 @@
 import java.util.*;
 
+import fabricante.externo.tarjetas.TarjetaMonedero;
+
 public class VendingSystem {
 
-	public HashMap<Integer, VendingMachine> maquinas = new HashMap<Integer, VendingMachine>();
-
+	public Map<Integer, VendingMachine> maquinas = new HashMap<Integer, VendingMachine>();
+	//public TarjetaMonedero t = new TarjetaMonedero(null);
 	public VendingSystem() {
+		
+	}
+	public void NuevaMaquina(int id, int numLineas, int profundidad) {
+		if (maquinas.containsKey(id)) {
+
+		} else {
+			VendingMachine maquina = new VendingMachine(id, numLineas, profundidad);
+			maquinas.put(id, maquina);
+		}
 
 	}
-
+	
+	public void BorrarMaquina(int clave) {
+		maquinas.remove(clave);
+	}
+	
+	public void ListaMaquinas() {
+		maquinas.values();
+	}
+	
 	public int MaquinasOperativas() {
 		int total=0;
-		for(int i =0; i<maquinas.size();i++) {
-			if(maquinas.get(i).getEstado()) {
+		for(Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
+			if(iterante.getValue().getEstado()) {
 				total++;
 			}
 		}
 		return total;
 	}
-	public void ListaMaquinas() {
-		maquinas.values();
-	}
-
-	public void NuevaMaquina(int id) {
-		if (maquinas.containsKey(id)) {
-
-		} else {
-			VendingMachine maquina = new VendingMachine(id);
-			maquinas.put(id, maquina);
+	
+	public ArrayList<VendingMachine> ListaMaquinasLineaVacia() {
+		ArrayList <VendingMachine> MaquinasLineaVacia = new ArrayList<VendingMachine>();
+		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
+			if(iterante.getValue().getLineaVacia()) {
+				MaquinasLineaVacia.add(iterante.getValue());
+			}
 		}
-
+		return MaquinasLineaVacia;
 	}
-
-	public void BorrarMaquina(int clave) {
-		maquinas.remove(clave);
+	
+	public void RellenarLinea(int id, Product producto, int numlinea) {
+		maquinas.get(id).getLinea(numlinea).Rellenar(producto);
 	}
-
+	
 }

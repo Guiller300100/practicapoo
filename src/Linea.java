@@ -2,6 +2,9 @@
  * Representa las funcionalidades y atributos de la clase línea, la cual se encuentra
  * en una máquina.
  * 
+ * 
+ * 
+ * 
  * @author guirodr
  * @author josbarb
  */

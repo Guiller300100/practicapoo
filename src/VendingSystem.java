@@ -1,17 +1,15 @@
+import java.security.InvalidParameterException;
 import java.util.*;
-
-import fabricante.externo.tarjetas.TarjetaMonedero;
 
 public class VendingSystem {
 
 	public Map<Integer, VendingMachine> maquinas = new HashMap<Integer, VendingMachine>();
-	//public TarjetaMonedero t = new TarjetaMonedero(null);
 	public VendingSystem() {
 		
 	}
 	public void NuevaMaquina(int id, int numLineas, int profundidad) {
 		if (maquinas.containsKey(id)) {
-
+			throw(new InvalidParameterException("ID ya en uso"));
 		} else {
 			VendingMachine maquina = new VendingMachine(id, numLineas, profundidad);
 			maquinas.put(id, maquina);

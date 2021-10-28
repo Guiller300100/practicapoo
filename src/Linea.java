@@ -39,5 +39,9 @@ public class Linea {
 		this.producto=producto;
 		stock = maxStock;
 	}
+	public void ProductoComprado() {
+		// TODO Auto-generated method stub
+		stock--;
+	}
 
 }

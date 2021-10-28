@@ -49,4 +49,8 @@ public class VendingSystem {
 		maquinas.get(id).getLinea(numlinea).Rellenar(producto);
 	}
 	
+	public void ModificarEstado(int id, boolean estado) {
+		maquinas.get(id).setEstado(estado);
+	}
+	
 }

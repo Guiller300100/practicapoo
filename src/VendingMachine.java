@@ -37,6 +37,7 @@ public class VendingMachine {
 	}
 
 	public boolean getLineaVacia() {
+		comprobarLinea();
 		return lineaVacia;
 	}
 	

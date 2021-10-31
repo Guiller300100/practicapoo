@@ -1,9 +1,7 @@
 /**
- * Representa las funcionalidades y atributos de la clase línea, la cual se encuentra
- * en una máquina.
- * 
- * 
- * 
+ * Representa las funcionalidades y atributos de una línea, la cual se encuentra
+ * en una máquina y contiene un cierto número de un tipo de producto que puede como máximo 
+ * alcanzar un valor tope.
  * 
  * @author guirodr
  * @author josbarb
@@ -15,12 +13,12 @@ public class Linea {
 	public int maxStock;
 	
 	/**
-	 * Crea una línea con las características indicadas.
+	 * Crea una nueva línea vacía con las características indicadas.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param producto						tipo de producto contenido en la línea
-	 * @param profundidad					número máximo de productos que puede contener la línea
+	 * @param producto			producto contenido en la línea
+	 * @param profundidad		número entero indicando el máximo de productos que puede contener la línea
 	 */
 	public Linea(Product producto, int profundidad) {
 		this.producto=producto;
@@ -28,18 +26,25 @@ public class Linea {
 	}
 	
 	/**
-	 * Incrementa el número de productos de una línea igualándolo al máximo posible
-	 * para dicha línea.
+	 * Rellena una línea de productos al igualar el número de productos contenidos con el máximo 
+	 * posible para dicha línea.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param producto						producto de la línea a rellenar
+	 * @param producto			producto de la línea a rellenar
 	 */
-	public void Rellenar(Product producto) {
+	public void rellenar(Product producto) {
 		this.producto=producto;
 		stock = maxStock;
 	}
-	public void ProductoComprado() {
+	
+	/**
+	 * Decrementa el número de productos contenidos en una línea de 1.
+	 * 
+	 * @author guirodr
+	 * @author josbarb
+	 */
+	public void productoComprado() {
 		// TODO Auto-generated method stub
 		stock--;
 	}

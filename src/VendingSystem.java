@@ -9,10 +9,10 @@ import java.util.*;
  * @author josbarb
  */
 public class VendingSystem {
-
+	/*El constructor es por si nos pasan un sistema de maquinas ya creado*/
 	public Map<Integer, VendingMachine> maquinas = new HashMap<Integer, VendingMachine>();
-	public VendingSystem() {
-		
+	public VendingSystem(Map <Integer, VendingMachine> sistema_maquina) {
+		maquinas=sistema_maquina;
 	}
 	
 	/**

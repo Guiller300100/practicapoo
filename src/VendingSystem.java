@@ -11,6 +11,14 @@ import java.util.*;
 public class VendingSystem {
 	/*El constructor es por si nos pasan un sistema de maquinas ya creado*/
 	public Map<Integer, VendingMachine> maquinas = new HashMap<Integer, VendingMachine>();
+	
+	/**
+	 * Crea una nueva red de máquinas con las características indicadas.
+	 * 
+	 * @author guirodr
+	 * @author josbarb
+	 * @param sistema_maquina	
+	 */
 	public VendingSystem(Map <Integer, VendingMachine> sistema_maquina) {
 		maquinas=sistema_maquina;
 	}
@@ -37,18 +45,18 @@ public class VendingSystem {
 	}
 	
 	/**
-	 * 
+	 * Borra la máquina correspondiente a un identificador de la red de máquinas.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param clave			
+	 * @param clave			número entero indicando el identificador de la máquina a borrar
 	 */
 	public void BorrarMaquina(int clave) {
 		maquinas.remove(clave);
 	}
 	
 	/**
-	 * 
+	 * Muestra la lista completa de máquinas de la red.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
@@ -75,40 +83,42 @@ public class VendingSystem {
 	}
 	
 	/**
-	 * CAMELCASE ARRAYLIST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 * Devuelve una lista de todas las máquinas de la red con al menos una línea 
+	 * vacía.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @return 
+	 * @return maquinasLineaVacia		lista de máquinas de la red con al menos una línea vacía
 	 */
 	public ArrayList<VendingMachine> ListaMaquinasLineaVacia() {
-		ArrayList <VendingMachine> MaquinasLineaVacia = new ArrayList<VendingMachine>();
+		ArrayList <VendingMachine> maquinasLineaVacia = new ArrayList<VendingMachine>();
 		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
 			if(iterante.getValue().getLineaVacia()) {
-				MaquinasLineaVacia.add(iterante.getValue());
+				maquinasLineaVacia.add(iterante.getValue());
 			}
 		}
-		return MaquinasLineaVacia;
+		return maquinasLineaVacia;
 	}
 	
 	/**
-	 * 
+	 * Rellena completamente una línea de una máquina de la red con un cierto 
+	 * producto.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param id
-	 * @param producto
-	 * @param numlinea		número entero indicando
+	 * @param id			número entero indicando el número identificador de la máquina
+	 * @param producto		producto con el que rellenar la línea
+	 * @param numlinea		número entero indicando el índice de una línea en la máquina tratada
 	 */
 	public void RellenarLinea(int id, Product producto, int numlinea) {
 		maquinas.get(id).getLinea(numlinea).rellenar(producto);
 	}
 	/**
-	 * Modifica el estado de una máquina de la red.
+	 * Da un estado (operativa/fuera de servicio) a una máquina de la red.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param id			número entero indicando si 
+	 * @param id			número entero indicando el número identificador de la máquina
 	 * @param estado		variable booleana indicando si la máquina está operativa (valor true) o fuera de servicio (valor false)
 	 */
 	public void ModificarEstado(int id, boolean estado) {

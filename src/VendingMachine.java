@@ -62,12 +62,12 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Devuelve 
+	 * Devuelve la línea correspondiente al índice indicado.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param numlinea
-	 * @return
+	 * @param numlinea					número entero indicando el índice de una línea en la máquina tratada
+	 * @return lineas.get(numlinea)		línea correspondiente al índice numlinea en el conjunto de lineas correspondiente a la máquina tratada
 	 */
 	public Linea getLinea(int numlinea) {
 		return lineas.get(numlinea);

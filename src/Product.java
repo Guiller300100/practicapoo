@@ -12,7 +12,7 @@ import java.time.Instant;
 public class Product {
 
 	public double precio;
-	public Instant date;
+	public Instant fecha;
 	public String nombre;
 	public String UPC;
 

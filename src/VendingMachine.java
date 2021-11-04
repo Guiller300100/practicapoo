@@ -102,6 +102,20 @@ public class VendingMachine {
 	}
 	
 	/**
+	 * Rellena completamente una línea de la máquina referida con un cierto 
+	 * producto.
+	 * 
+	 * @author guirodr
+	 * @author josbarb
+	 * @param producto		producto con el que rellenar la línea
+	 * @param numlinea		número entero indicando el índice de una línea en la máquina tratada
+	 */
+	
+	public void RellenarLinea(Product producto, int numlinea) {
+		getLinea(numlinea).rellenar(producto);
+	}
+	
+	/**
 	 * Realiza la compra en de un producto contenido en una de las líneas de una máquina, 
 	 * en caso de que sea posible (saldo suficiente y línea conteniendo el producto no 
 	 * estando vacía).

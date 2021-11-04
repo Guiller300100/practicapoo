@@ -10,17 +10,17 @@ import java.util.*;
  */
 public class VendingSystem {
 	/*El constructor es por si nos pasan un sistema de maquinas ya creado*/
-	public Map<Integer, VendingMachine> maquinas = new HashMap<Integer, VendingMachine>();
+	private Map<Integer, VendingMachine> maquinas = new HashMap<>();
 	
 	/**
 	 * Crea una nueva red de máquinas con las características indicadas.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param sistema_maquina	
+	 * @param sistema_maquina		mapa 
 	 */
-	public VendingSystem(Map <Integer, VendingMachine> sistema_maquina) {
-		maquinas=sistema_maquina;
+	public VendingSystem(Map <Integer, VendingMachine> sistemaMaquina) {
+		maquinas=sistemaMaquina;
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class VendingSystem {
 	 * @throws InvalidParameterException	si el identificador ya corresponde a una máquina de la red
 	 * @see VendingMachine
 	 */
-	public void NuevaMaquina(int id, int numLineas, int profundidad) {
+	public void nuevaMaquina(int id, int numLineas, int profundidad) {
 		if (maquinas.containsKey(id)) {
 			throw(new InvalidParameterException("ID ya en uso"));
 		} else {
@@ -51,7 +51,7 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @param clave			número entero indicando el identificador de la máquina a borrar
 	 */
-	public void BorrarMaquina(int clave) {
+	public void borrarMaquina(int clave) {
 		maquinas.remove(clave);
 	}
 	
@@ -61,7 +61,7 @@ public class VendingSystem {
 	 * @author guirodr
 	 * @author josbarb
 	 */
-	public void ListaMaquinas() {
+	public void listaMaquinas() {
 		maquinas.values();
 	}
 	
@@ -72,7 +72,7 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @return total		número entero indicando el número de máquinas vending operativas en la red
 	 */
-	public int MaquinasOperativas() {
+	public int maquinasOperativas() {
 		int total=0;
 		for(Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
 			if(iterante.getValue().getEstado()) {
@@ -90,7 +90,7 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @return maquinasLineaVacia		lista de máquinas de la red con al menos una línea vacía
 	 */
-	public ArrayList<VendingMachine> ListaMaquinasLineaVacia() {
+	public ArrayList<VendingMachine> listaMaquinasLineaVacia() {
 		ArrayList <VendingMachine> maquinasLineaVacia = new ArrayList<VendingMachine>();
 		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
 			if(iterante.getValue().getLineaVacia()) {
@@ -110,7 +110,7 @@ public class VendingSystem {
 	 * @param producto		producto con el que rellenar la línea
 	 * @param numlinea		número entero indicando el índice de una línea en la máquina tratada
 	 */
-	public void RellenarLinea(int id, Product producto, int numlinea) {
+	public void rellenarLinea(int id, Product producto, int numlinea) {
 		maquinas.get(id).getLinea(numlinea).rellenar(producto);
 	}
 	/**
@@ -121,7 +121,7 @@ public class VendingSystem {
 	 * @param id			número entero indicando el número identificador de la máquina
 	 * @param estado		variable booleana indicando si la máquina está operativa (valor true) o fuera de servicio (valor false)
 	 */
-	public void ModificarEstado(int id, boolean estado) {
+	public void modificarEstado(int id, boolean estado) {
 		maquinas.get(id).setEstado(estado);
 	}
 	

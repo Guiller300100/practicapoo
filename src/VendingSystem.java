@@ -19,8 +19,8 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @param sistema_maquina		mapa 
 	 */
-	public VendingSystem(Map <Integer, VendingMachine> sistemaMaquina) {
-		maquinas=sistemaMaquina;
+	public VendingSystem(Map <Integer, VendingMachine> sistema_maquina) {
+			maquinas.putAll(sistema_maquina);
 	}
 	
 	/**
@@ -99,20 +99,7 @@ public class VendingSystem {
 		}
 		return maquinasLineaVacia;
 	}
-	
-	/**
-	 * Rellena completamente una línea de una máquina de la red con un cierto 
-	 * producto.
-	 * 
-	 * @author guirodr
-	 * @author josbarb
-	 * @param id			número entero indicando el número identificador de la máquina
-	 * @param producto		producto con el que rellenar la línea
-	 * @param numlinea		número entero indicando el índice de una línea en la máquina tratada
-	 */
-	public void rellenarLinea(int id, Product producto, int numlinea) {
-		maquinas.get(id).getLinea(numlinea).rellenar(producto);
-	}
+
 	/**
 	 * Da un estado (operativa/fuera de servicio) a una máquina de la red.
 	 * 

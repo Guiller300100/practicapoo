@@ -111,7 +111,7 @@ public class VendingMachine {
 	 * @param numlinea		número entero indicando el índice de una línea en la máquina tratada
 	 */
 	
-	public void RellenarLinea(Product producto, int numlinea) {
+	public void rellenarLinea(Product producto, int numlinea) {
 		getLinea(numlinea).rellenar(producto);
 	}
 	

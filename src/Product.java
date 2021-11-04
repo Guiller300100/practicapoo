@@ -68,6 +68,7 @@ public class Product {
 			return false;
 		} else {
 			double suma = 0;
+			double redondeo=0;
 			for (int i = 0; i < UPC.length() - 1; i++) {
 				if (i % 2 == 0) {
 					suma = Character.getNumericValue(UPC.charAt(i)) * 3 + suma;
@@ -75,7 +76,13 @@ public class Product {
 					suma = Character.getNumericValue(UPC.charAt(i)) + suma;
 				}
 			}
-			if (Character.getNumericValue(UPC.charAt(UPC.length() - 1)) != Math.abs(suma - Math.ceil(suma))) {
+			if(suma%10!=0) {
+				redondeo=Math.ceil(suma/10);
+				redondeo=redondeo*10;
+			}else
+				redondeo=suma;
+			
+			if (Character.getNumericValue(UPC.charAt(UPC.length() - 1)) != Math.abs(suma - redondeo)) {
 				return false;
 			}else 
 				return true;

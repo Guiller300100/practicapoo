@@ -36,7 +36,7 @@ public class VendingSystem {
 	 */
 	public void nuevaMaquina(int id, int numLineas, int profundidad) {
 		if (maquinas.containsKey(id)) {
-			throw(new InvalidParameterException("ID ya en uso"));
+			throw(new IllegalArgumentException("ID ya en uso"));
 		} else {
 			VendingMachine maquina = new VendingMachine(id, numLineas, profundidad);
 			maquinas.put(id, maquina);

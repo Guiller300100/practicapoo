@@ -138,10 +138,10 @@ public class VendingMachine {
 				lineas.get(numlinea).productoComprado();
 				t.descontarDelSaldo(credencial_compra, lineas.get(numlinea).producto.getPrecio());
 			}else {
-				throw(new InvalidParameterException("Línea vacía"));
+				throw(new IllegalArgumentException("Línea vacía"));
 			}
 		}else {
-			throw(new InvalidParameterException("Tarjeta sin saldo"));
+			throw(new IllegalArgumentException("Tarjeta sin saldo"));
 		}
 	}
 }

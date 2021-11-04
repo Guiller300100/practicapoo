@@ -25,9 +25,30 @@ public class ProductTest {
 		assertEquals(0.00, p.getPrecio(),0);
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetPrecioNegativo() {
+		Product p = new Product("111111111117", "Bruce Springteen", Instant.now(), 0.00);
+		p.setPrecio(-1.50);
+	}
 	@Test
 	public void testValidarUPC() {
-		
+		Product p = new Product("111111111117", "Bruce Springteen", Instant.now(), 0.00);
+		assertNotNull(p);
+		assertTrue(p.validarUPC(p.UPC));
 	}
-
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testValidarUPCNegativo() {
+		Product p = new Product("-11111111117", "Bruce Springteen", Instant.now(), 0.00);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testValidarUPCCorto() {
+		Product p = new Product("11111111117", "Bruce Springteen", Instant.now(), 0.00);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testValidarUPCInvalido() {
+		Product p = new Product("111111111107", "Bruce Springteen", Instant.now(), 0.00);
+	}
 }

@@ -29,13 +29,13 @@ public class Product {
 	 *                                   verifica su validez
 	 */
 	public Product(String cod, String nom, Instant fecha, double precio) {
-		if(validarUPC(cod)) {
-				UPC = cod;
-				nombre = nom;
-				this.fecha = fecha;
-				this.precio = precio;
-		}else {
-			throw(new InvalidParameterException("UPC introducido es erroneo"));
+		if (validarUPC(cod)) {
+			UPC = cod;
+			nombre = nom;
+			this.fecha = fecha;
+			this.precio = precio;
+		} else {
+			throw new IllegalArgumentException("UPC introducido es erroneo");
 		}
 	}
 
@@ -60,15 +60,19 @@ public class Product {
 	 *               tratado
 	 */
 	public void setPrecio(double precio) {
-		this.precio = precio;
+		if (precio < 0) {
+			throw (new IllegalArgumentException("El precio tiene que ser 0 o mayor"));
+		} else {
+			this.precio = precio;
+		}
 	}
 
 	public boolean validarUPC(String UPC) {
-		if (UPC.length() != 12) {
+		if (UPC.length() != 12 || Double.parseDouble(UPC)<0) {
 			return false;
 		} else {
 			double suma = 0;
-			double redondeo=0;
+			double redondeo = 0;
 			for (int i = 0; i < UPC.length() - 1; i++) {
 				if (i % 2 == 0) {
 					suma = Character.getNumericValue(UPC.charAt(i)) * 3 + suma;
@@ -76,16 +80,17 @@ public class Product {
 					suma = Character.getNumericValue(UPC.charAt(i)) + suma;
 				}
 			}
-			if(suma%10!=0) {
-				redondeo=Math.ceil(suma/10);
-				redondeo=redondeo*10;
-			}else
-				redondeo=suma;
-			
+			if (suma % 10 != 0) {
+				redondeo = Math.ceil(suma / 10);
+				redondeo = redondeo * 10;
+			} else {
+				redondeo = suma;
+			}
 			if (Character.getNumericValue(UPC.charAt(UPC.length() - 1)) != Math.abs(suma - redondeo)) {
 				return false;
-			}else 
+			} else {
 				return true;
+			}
 		}
 	}
 }

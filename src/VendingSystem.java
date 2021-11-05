@@ -111,7 +111,7 @@ public class VendingSystem {
 			}
 			return total;
 		}
-		
+
 	}
 
 	/**
@@ -123,14 +123,17 @@ public class VendingSystem {
 	 * @return maquinasLineaVacia lista de máquinas de la red con al menos una línea
 	 *         vacía
 	 */
-	public ArrayList<VendingMachine> listaMaquinasLineaVacia() {
-		ArrayList<VendingMachine> maquinasLineaVacia = new ArrayList<VendingMachine>();
+	public void listaMaquinasLineaVacia() {
+		Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
 		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
-			if (iterante.getValue().getLineaVacia()) {
-				maquinasLineaVacia.add(iterante.getValue());
+			if (iterante.getValue().comprobarLinea()) {
+				maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
 			}
 		}
-		return maquinasLineaVacia;
+		if(!maquinasLineaVacia.values().isEmpty()) {
+			maquinasLineaVacia.values();
+		}else
+			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
 	}
 
 	/**

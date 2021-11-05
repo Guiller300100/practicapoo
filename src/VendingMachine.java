@@ -18,7 +18,7 @@ public class VendingMachine {
 
 	private int id;
 	private boolean estado;
-	private boolean lineaVacia = false;
+	private boolean lineaVacia;
 	private static String credencial_compra = "6Z1y00Nm31aA-571";
 	ArrayList<Linea> lineas = new ArrayList<Linea>();
 
@@ -34,6 +34,7 @@ public class VendingMachine {
 	public VendingMachine(int identificador, int numlineas, int profundidad) {
 		id = identificador;
 		estado = true;
+		lineaVacia=true;
 		for (int i = 0; i < numlineas; i++) {
 			lineas.add(new Linea(null, profundidad));
 		}
@@ -74,31 +75,22 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Devuelve una variable booleana indicando si la máquina contiene alguna línea vacía.
-	 * 
-	 * @author guirodr
-	 * @author josbarb
-	 * @return lineaVacia		variable booleana indicando si la máquina contiene alguna línea vacía (valor true) o no (valor false).
-	 * @see comprobarLinea
-	 */
-	public boolean getLineaVacia() {
-		comprobarLinea();
-		return lineaVacia;
-	}
-	
-	/**
 	 * Comprueba si la máquina contiene alguna línea vacía y si es el caso da valor true 
 	 * a la booleana indicando la presencia de líneas vacías.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
+	 *  @return lineaVacia		Devuelve la variable booleana lineaVacia donde indica si la maquina tiene al menos una linea vacia o no
 	 */
-	public void comprobarLinea() {
+	public boolean comprobarLinea() {
 		for(Linea linea: lineas) {
 			if(linea.stock==0) {
 				lineaVacia=true;
-			}
+				return lineaVacia;
+			}else
+				lineaVacia = false;
 		}
+		return lineaVacia;
 	}
 	
 	/**
@@ -113,6 +105,7 @@ public class VendingMachine {
 	
 	public void rellenarLinea(Product producto, int numlinea) {
 		getLinea(numlinea).rellenar(producto);
+		this.comprobarLinea();
 	}
 	
 	/**

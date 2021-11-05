@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,10 @@ import org.junit.Test;
 public class VendingSystemTest {
 	
 	private Map<Integer, VendingMachine> m = new HashMap<>();
+	
 	private VendingSystem vs = new VendingSystem(m);
+	
+	Product p = new Product ("111111111117","Bruce Springsteen", Instant.now(), 0.00);
 
 	@Test
 	public void testVendingSystem() {
@@ -96,12 +100,25 @@ public class VendingSystemTest {
 
 	@Test
 	public void testListaMaquinasLineaVacia() {
-		fail("Not yet implemented");
+		vs.nuevaMaquina(1, 1, 10);
+		assertNotNull(vs.getMaquina(1));
+		vs.getMaquina(1).rellenarLinea(p, 0);
+		vs.nuevaMaquina(2, 5, 10);
+		assertNotNull(vs.getMaquina(2));
+		vs.listaMaquinasLineaVacia();
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testListaMaquinasLineaVaciaNoHayMaquinas() {
+		vs.listaMaquinasLineaVacia();
 	}
 
 	@Test
 	public void testModificarEstado() {
-		fail("Not yet implemented");
+		vs.nuevaMaquina(1, 5, 10);
+		assertNotNull(vs.getMaquina(1));
+		vs.modificarEstado(1, false);
+		assertFalse(vs.getMaquina(1).getEstado());
 	}
 
 }

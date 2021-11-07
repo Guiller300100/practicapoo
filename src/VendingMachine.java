@@ -159,6 +159,12 @@ public class VendingMachine {
 		}
 	}
 
+	
+	/**
+	 * Este es para comprobar si una linea sola esta vacia o no
+	 * @param linea
+	 * @return
+	 */
 	private boolean comprobarLinea(int linea) {
 		if (linea < 0) {
 			throw (new IllegalArgumentException("Línea negativa"));

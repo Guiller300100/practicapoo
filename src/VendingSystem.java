@@ -24,6 +24,11 @@ public class VendingSystem {
 		maquinas.putAll(sistema_maquina);
 	}
 	
+	/**
+	 *Para coger el mapa de maquinas entero
+	 * @return
+	 */
+	
 	public Map<Integer, VendingMachine> getMaquinas() {
 		return maquinas;
 	}
@@ -54,6 +59,12 @@ public class VendingSystem {
 
 	}
 
+	/**
+	 * Para coger una maquina especifica.
+	 * @param id
+	 * @return
+	 */
+	
 	public VendingMachine getMaquina(int id) {
 		if (maquinas.containsKey(id)) {
 			return maquinas.get(id);

@@ -67,6 +67,12 @@ public class Product {
 		}
 	}
 
+	/**
+	 * Aqui se valida el UPC de un producto a crear y se ve si esta bien o no
+	 * @param UPC
+	 * @return
+	 */
+	
 	public boolean validarUPC(String UPC) {
 		if (UPC.length() != 12 || Double.parseDouble(UPC)<0) {
 			return false;

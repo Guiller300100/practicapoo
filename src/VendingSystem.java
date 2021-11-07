@@ -12,6 +12,7 @@ public class VendingSystem {
 	/* El constructor es por si nos pasan un sistema de maquinas ya creado */
 	private Map<Integer, VendingMachine> maquinas = new HashMap<>();
 
+
 	/**
 	 * Crea una nueva red de máquinas con las características indicadas.
 	 * 
@@ -21,6 +22,10 @@ public class VendingSystem {
 	 */
 	public VendingSystem(Map<Integer, VendingMachine> sistema_maquina) {
 		maquinas.putAll(sistema_maquina);
+	}
+	
+	public Map<Integer, VendingMachine> getMaquinas() {
+		return maquinas;
 	}
 
 	/**
@@ -41,16 +46,11 @@ public class VendingSystem {
 	 * @see VendingMachine
 	 */
 	public void nuevaMaquina(int id, int numLineas, int profundidad) {
-		if (id >= 0 && numLineas > 0 && profundidad > 0) {
 			if (maquinas.containsKey(id)) {
 				throw (new IllegalArgumentException("ID ya en uso"));
 			} else {
-				VendingMachine maquina = new VendingMachine(id, numLineas, profundidad);
-				maquinas.put(id, maquina);
+				maquinas.put(id, new VendingMachine(id, numLineas, profundidad));
 			}
-		} else {
-			throw (new IllegalArgumentException("Parametros mal introducidos"));
-		}
 
 	}
 
@@ -126,7 +126,7 @@ public class VendingSystem {
 	public void listaMaquinasLineaVacia() {
 		Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
 		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
-			if (iterante.getValue().comprobarLinea()) {
+			if (iterante.getValue().comprobarLineas()) {
 				maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
 			}
 		}

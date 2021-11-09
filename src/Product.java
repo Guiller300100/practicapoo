@@ -29,13 +29,17 @@ public class Product {
 	 *                                   verifica su validez
 	 */
 	public Product(String cod, String nom, Instant fecha, double precio) {
-		if (validarUPC(cod)) {
-			UPC = cod;
-			nombre = nom;
-			this.fecha = fecha;
-			this.precio = precio;
+		if (cod == null || nom == null || fecha == null) {
+			throw new IllegalArgumentException("Argumento mal introducido");
 		} else {
-			throw new IllegalArgumentException("UPC introducido es erroneo");
+			if (validarUPC(cod)) {
+				UPC = cod;
+				nombre = nom;
+				this.fecha = fecha;
+				this.precio = precio;
+			} else {
+				throw new IllegalArgumentException("UPC introducido es erroneo");
+			}
 		}
 	}
 
@@ -69,12 +73,13 @@ public class Product {
 
 	/**
 	 * Aqui se valida el UPC de un producto a crear y se ve si esta bien o no
+	 * 
 	 * @param UPC
 	 * @return
 	 */
-	
+
 	public boolean validarUPC(String UPC) {
-		if (UPC.length() != 12 || Double.parseDouble(UPC)<0) {
+		if (UPC.length() != 12 || Double.parseDouble(UPC) < 0) {
 			return false;
 		} else {
 			double suma = 0;

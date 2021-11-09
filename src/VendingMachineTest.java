@@ -81,11 +81,12 @@ public class VendingMachineTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCompraSinDinero() {
+	public void testRellenarProductoNulo() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.compra(t, 0);
+		m.rellenarLinea(null, 1);
 	}
+	
 	
 	@Test
 	public void testCompra() {
@@ -119,5 +120,19 @@ public class VendingMachineTest {
 		t.recargaSaldo("A156Bv09_1zXo894", 1);
 		m.rellenarLinea(new Product ("111111111117","Bruce Springsteen", Instant.now(), 3), 0);
 		m.compra(t, 0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCompraSinDinero() {
+		m = new VendingMachine(0, 1, 10);
+		assertNotNull(m);
+		m.compra(t, 0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCompraTarjetaNula() {
+		m = new VendingMachine(0, 1, 10);
+		assertNotNull(m);
+		m.compra(null, 0);
 	}
 }

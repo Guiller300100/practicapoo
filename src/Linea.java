@@ -22,12 +22,12 @@ public class Linea {
 	 *                    contener la línea
 	 */
 	public Linea(Product producto, int profundidad) {
-		if (profundidad > 0) {
-			this.producto = producto;
-			maxStock = profundidad;
-		} else
-			throw new IllegalArgumentException("la profundidad es erronea");
-	}
+			if (profundidad > 0) {
+				this.producto = producto;
+				maxStock = profundidad;
+			} else
+				throw new IllegalArgumentException("la profundidad es erronea");
+		}
 
 	/**
 	 * Rellena una línea de productos al igualar el número de productos contenidos
@@ -38,8 +38,12 @@ public class Linea {
 	 * @param producto producto de la línea a rellenar
 	 */
 	public void rellenar(Product producto) {
-		this.producto = producto;
-		stock = maxStock;
+		if (producto == null) {
+			throw new IllegalArgumentException("Producto nulo");
+		} else {
+			this.producto = producto;
+			stock = maxStock;
+		}
 	}
 
 	/**

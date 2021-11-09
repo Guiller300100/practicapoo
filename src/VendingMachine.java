@@ -118,15 +118,18 @@ public class VendingMachine {
 	 */
 
 	public void rellenarLinea(Product producto, int numlinea) {
-		if (numlinea < 0) {
-			throw (new IllegalArgumentException("Línea negativa"));
+		if (producto == null) {
+			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {
+			if (numlinea < 0) {
+				throw (new IllegalArgumentException("Línea negativa"));
+			} else {
 
-			getLinea(numlinea).rellenar(producto);
-			this.comprobarLineas();
+				getLinea(numlinea).rellenar(producto);
+				this.comprobarLineas();
+			}
 		}
 	}
-
 	/**
 	 * Realiza la compra en de un producto contenido en una de las líneas de una
 	 * máquina, en caso de que sea posible (saldo suficiente y línea conteniendo el
@@ -147,19 +150,23 @@ public class VendingMachine {
 	 * @see descontarDelSaldo
 	 */
 	public void compra(TarjetaMonedero t, int numlinea) {
-		if (t.getSaldoActual() != 0.0) {
-			if (!comprobarLinea(numlinea)) {
-				if (lineas.get(numlinea).producto.getPrecio() > t.getSaldoActual()) {
-					throw (new IllegalArgumentException("Tarjeta sin saldo suficiente"));
+		if (t == null) {
+			throw (new IllegalArgumentException("Tarjeta es nula"));
+		} else {
+			if (t.getSaldoActual() != 0.0) {
+				if (!comprobarLinea(numlinea)) {
+					if (lineas.get(numlinea).producto.getPrecio() > t.getSaldoActual()) {
+						throw (new IllegalArgumentException("Tarjeta sin saldo suficiente"));
+					} else {
+						lineas.get(numlinea).productoComprado();
+						t.descontarDelSaldo(credencial_compra, lineas.get(numlinea).producto.getPrecio());
+					}
 				} else {
-					lineas.get(numlinea).productoComprado();
-					t.descontarDelSaldo(credencial_compra, lineas.get(numlinea).producto.getPrecio());
+					throw (new IllegalArgumentException("Línea vacía"));
 				}
 			} else {
-				throw (new IllegalArgumentException("Línea vacía"));
+				throw (new IllegalArgumentException("Tarjeta sin saldo"));
 			}
-		} else {
-			throw (new IllegalArgumentException("Tarjeta sin saldo"));
 		}
 	}
 

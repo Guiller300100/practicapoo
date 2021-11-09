@@ -15,18 +15,19 @@ public class LineaTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testProfundidadNegativa() {
+	public void testLineaProfundidadNegativa() {
 		Product p = new Product ("111111111117","Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
 		Linea l = new Linea (p, -10);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testProfundidadNula() {
+	public void testLineaProfundidadNula() {
 		Product p = new Product ("111111111117","Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
 		Linea l = new Linea (p, 0);
 	}
+
 	
 	@Test
 	public void testRellenar() {
@@ -35,6 +36,13 @@ public class LineaTest {
 		Linea l = new Linea (p, 10);
 		assertNotNull(l);
 		l.rellenar(p);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRellenarProductoNulo() {
+		Linea l = new Linea (new Product ("111111111117","Bruce Springsteen", Instant.now(), 0.00), 10);
+		assertNotNull(l);
+		l.rellenar(null);
 	}
 
 	@Test

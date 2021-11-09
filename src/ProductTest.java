@@ -8,12 +8,28 @@ public class ProductTest {
 
 	@Test
 	public void testProduct() {
-		
+		assertNotNull(new Product ("111111111117","Bruce Springsteen", Instant.now(), 0.00));
 	}
 
+	@Test(expected=IllegalArgumentException.class)
+	public void testProductUPCNulo() {
+		assertNotNull(new Product (null,"Bruce Springsteen", Instant.now(), 0.00));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testProductNombreNulo() {
+		assertNotNull(new Product ("111111111117",null, Instant.now(), 0.00));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testProductFechaNulo() {
+		assertNotNull(new Product ("111111111117","Bruce Springsteen", null, 0.00));
+	}
+	
 	@Test
 	public void testGetPrecio() {
-		
+		Product p = new Product ("111111111117","Bruce Springsteen", Instant.now(), 0.00);
+		assertEquals(0.00, p.getPrecio(),0);
 	}
 
 	@Test

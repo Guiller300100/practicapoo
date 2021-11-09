@@ -12,7 +12,6 @@ public class VendingSystem {
 	/* El constructor es por si nos pasan un sistema de maquinas ya creado */
 	private Map<Integer, VendingMachine> maquinas = new HashMap<>();
 
-
 	/**
 	 * Crea una nueva red de máquinas con las características indicadas.
 	 * 
@@ -21,14 +20,19 @@ public class VendingSystem {
 	 * @param sistema_maquina mapa
 	 */
 	public VendingSystem(Map<Integer, VendingMachine> sistema_maquina) {
-		maquinas.putAll(sistema_maquina);
+		if (sistema_maquina == null) {
+			throw new IllegalArgumentException("El mapa es nulo");
+		} else {
+			maquinas.putAll(sistema_maquina);
+		}
 	}
-	
+
 	/**
-	 *Para coger el mapa de maquinas entero
+	 * Para coger el mapa de maquinas entero
+	 * 
 	 * @return
 	 */
-	
+
 	public Map<Integer, VendingMachine> getMaquinas() {
 		return maquinas;
 	}
@@ -51,20 +55,21 @@ public class VendingSystem {
 	 * @see VendingMachine
 	 */
 	public void nuevaMaquina(int id, int numLineas, int profundidad) {
-			if (maquinas.containsKey(id)) {
-				throw (new IllegalArgumentException("ID ya en uso"));
-			} else {
-				maquinas.put(id, new VendingMachine(id, numLineas, profundidad));
-			}
+		if (maquinas.containsKey(id)) {
+			throw (new IllegalArgumentException("ID ya en uso"));
+		} else {
+			maquinas.put(id, new VendingMachine(id, numLineas, profundidad));
+		}
 
 	}
 
 	/**
 	 * Para coger una maquina especifica.
+	 * 
 	 * @param id
 	 * @return
 	 */
-	
+
 	public VendingMachine getMaquina(int id) {
 		if (maquinas.containsKey(id)) {
 			return maquinas.get(id);
@@ -141,9 +146,9 @@ public class VendingSystem {
 				maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
 			}
 		}
-		if(!maquinasLineaVacia.values().isEmpty()) {
+		if (!maquinasLineaVacia.values().isEmpty()) {
 			maquinasLineaVacia.values();
-		}else
+		} else
 			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
 	}
 

@@ -19,6 +19,11 @@ public class VendingSystemTest {
 		VendingSystem t = new VendingSystem(m);
 		assertNotNull(t);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testVendingSystemNulo() {
+		VendingSystem t = new VendingSystem(null);
+	}
 
 	@Test
 	public void testNuevaMaquina() {

@@ -111,4 +111,13 @@ public class VendingMachineTest {
 		t.recargaSaldo("A156Bv09_1zXo894", 1);
 		m.compra(t, -1);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCompraDineroInsuficiente() {
+		m = new VendingMachine(0, 2, 10);
+		assertNotNull(m);
+		t.recargaSaldo("A156Bv09_1zXo894", 1);
+		m.rellenarLinea(new Product ("111111111117","Bruce Springsteen", Instant.now(), 3), 0);
+		m.compra(t, 0);
+	}
 }

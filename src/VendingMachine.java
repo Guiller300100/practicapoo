@@ -149,8 +149,12 @@ public class VendingMachine {
 	public void compra(TarjetaMonedero t, int numlinea) {
 		if (t.getSaldoActual() != 0.0) {
 			if (!comprobarLinea(numlinea)) {
-				lineas.get(numlinea).productoComprado();
-				t.descontarDelSaldo(credencial_compra, lineas.get(numlinea).producto.getPrecio());
+				if (lineas.get(numlinea).producto.getPrecio() > t.getSaldoActual()) {
+					throw (new IllegalArgumentException("Tarjeta sin saldo suficiente"));
+				} else {
+					lineas.get(numlinea).productoComprado();
+					t.descontarDelSaldo(credencial_compra, lineas.get(numlinea).producto.getPrecio());
+				}
 			} else {
 				throw (new IllegalArgumentException("Línea vacía"));
 			}
@@ -159,9 +163,9 @@ public class VendingMachine {
 		}
 	}
 
-	
 	/**
 	 * Este es para comprobar si una linea sola esta vacia o no
+	 * 
 	 * @param linea
 	 * @return
 	 */

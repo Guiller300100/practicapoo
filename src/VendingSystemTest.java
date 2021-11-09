@@ -103,8 +103,9 @@ public class VendingSystemTest {
 	public void testListaMaquinasLineaVacia() {
 		vs.nuevaMaquina(1, 1, 10);
 		assertNotNull(vs.getMaquina(1));
-		vs.nuevaMaquina(2, 5, 10);
+		vs.nuevaMaquina(2, 1, 10);
 		assertNotNull(vs.getMaquina(2));
+		vs.getMaquina(2).rellenarLinea(p, 0);
 		vs.listaMaquinasLineaVacia();
 	}
 	

@@ -39,12 +39,12 @@ public class VendingMachine {
 	 * 										número de líneas o la profundidad no 
 	 * 										son positivos
 	 */
-	public VendingMachine(int identificador, int numlineas, int profundidad) {
-		if (identificador >= 0 && numlineas > 0 && profundidad > 0) {
+	public VendingMachine(int identificador, int numLineas, int profundidad) {
+		if (identificador >= 0 && numLineas > 0 && profundidad > 0) {
 			id = identificador;
 			estado = true;
 			lineaVacia = true;
-			for (int i = 0; i < numlineas; i++) {
+			for (int i = 0; i < numLineas; i++) {
 				lineas.add(new Linea(null, profundidad));
 			}
 		} else {

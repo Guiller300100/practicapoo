@@ -125,7 +125,7 @@ public class VendingMachine {
 			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {
 			if (numLinea < 0 || numLinea >= lineas.size()) {
-				throw (new IllegalArgumentException("Numero de linea mal introducida"));
+				throw (new IllegalArgumentException("Número de línea mal introducido"));
 			} else {
 				getLinea(numLinea).rellenar(producto);
 				this.comprobarLineas();

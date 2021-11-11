@@ -105,10 +105,11 @@ public class VendingSystem {
 	 * @author guirodr
 	 * @author josbarb
 	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
+	 * @return lista completa de máquinas de la red de máquinas
 	 */
 	public ArrayList<VendingMachine> listaMaquinas() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
+			throw (new IllegalArgumentException("No hay ninguna máquina creada"));
 		} else {
 			return new ArrayList<VendingMachine>(maquinas.values());
 		}
@@ -125,7 +126,7 @@ public class VendingSystem {
 	 */
 	public int maquinasOperativas() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
+			throw (new IllegalArgumentException("No hay ninguna máquina creada"));
 		} else {
 			int total = 0;
 			for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
@@ -139,16 +140,17 @@ public class VendingSystem {
 	}
 
 	/**
-	 * Devuelve una lista de todas las máquinas de la red con al menos una línea
+	 * Devuelve una lista de todas las máquinas de la red de máquinas con al menos una línea
 	 * vacía.
 	 * 
 	 * @author guirodr
 	 * @author josbarb
 	 * @throws IllegalArgumentException		si no hay ninguna máquina de la red con alguna línea vacía
+	 * @return lista de máquinas de la red de máquinas con alguna línea vacía
 	 */
 	public ArrayList<VendingMachine> listaMaquinasLineaVacia() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
+			throw (new IllegalArgumentException("No hay ninguna máquina creada"));
 		} else {
 			Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
 			for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
@@ -159,7 +161,7 @@ public class VendingSystem {
 			if (!maquinasLineaVacia.values().isEmpty()) {
 				return new ArrayList<VendingMachine>(maquinasLineaVacia.values());
 			} else
-				throw (new IllegalArgumentException("No hay ninguna maquina con alguna linea vacia"));
+				throw (new IllegalArgumentException("No hay ninguna máquina con alguna línea vacia"));
 		}
 	}
 

@@ -1,3 +1,8 @@
+/**
+ * @author guirodr
+ * @author josbarb
+ **/
+
 import static org.junit.Assert.*;
 
 import java.time.Instant;

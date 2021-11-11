@@ -1,4 +1,7 @@
 /**
+ * @author guirodr
+ * @author josbarb
+ * 
  * Representa las funcionalidades y atributos de una línea, la cual se encuentra
  * en una máquina y contiene un cierto número de un tipo de producto que puede
  * como máximo alcanzar un valor máximo.

@@ -1,3 +1,8 @@
+/**
+ * @author guirodr
+ * @author josbarb
+ **/
+
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 

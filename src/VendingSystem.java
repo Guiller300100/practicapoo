@@ -106,11 +106,11 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
 	 */
-	public void listaMaquinas() {
+	public ArrayList<VendingMachine> listaMaquinas() {
 		if (maquinas.size() == 0) {
 			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
 		} else {
-			maquinas.values();
+			return new ArrayList<VendingMachine>(maquinas.values());
 		}
 	}
 
@@ -146,7 +146,7 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @throws IllegalArgumentException		si no hay ninguna máquina de la red con alguna línea vacía
 	 */
-	public void listaMaquinasLineaVacia() {
+	public ArrayList<VendingMachine> listaMaquinasLineaVacia() {
 		if (maquinas.size() == 0) {
 			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
 		} else {
@@ -157,7 +157,7 @@ public class VendingSystem {
 				}
 			}
 			if (!maquinasLineaVacia.values().isEmpty()) {
-				maquinasLineaVacia.values();
+				return new ArrayList<VendingMachine>(maquinasLineaVacia.values());
 			} else
 				throw (new IllegalArgumentException("No hay ninguna maquina con alguna linea vacia"));
 		}

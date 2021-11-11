@@ -121,8 +121,8 @@ public class VendingMachine {
 		if (producto == null) {
 			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {
-			if (numlinea < 0) {
-				throw (new IllegalArgumentException("Línea negativa"));
+			if (numlinea < 0|| numlinea >= lineas.size()) {
+				throw (new IllegalArgumentException("Numero de linea mal introducida"));
 			} else {
 
 				getLinea(numlinea).rellenar(producto);
@@ -130,6 +130,7 @@ public class VendingMachine {
 			}
 		}
 	}
+
 	/**
 	 * Realiza la compra en de un producto contenido en una de las líneas de una
 	 * máquina, en caso de que sea posible (saldo suficiente y línea conteniendo el
@@ -176,7 +177,7 @@ public class VendingMachine {
 	 * @param linea
 	 * @return
 	 */
-	private boolean comprobarLinea(int linea) {
+	public boolean comprobarLinea(int linea) {
 		if (linea < 0) {
 			throw (new IllegalArgumentException("Línea negativa"));
 		} else {

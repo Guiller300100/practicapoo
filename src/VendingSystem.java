@@ -149,7 +149,7 @@ public class VendingSystem {
 		if (!maquinasLineaVacia.values().isEmpty()) {
 			maquinasLineaVacia.values();
 		} else
-			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
+			throw (new IllegalArgumentException("No hay ninguna maquina con alguna linea vacia"));
 	}
 
 	/**

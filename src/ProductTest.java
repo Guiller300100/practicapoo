@@ -56,16 +56,16 @@ public class ProductTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCNegativo() {
-		Product p = new Product("-11111111117", "Bruce Springteen", Instant.now(), 0.00);
+		new Product("-11111111117", "Bruce Springteen", Instant.now(), 0.00);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCCorto() {
-		Product p = new Product("11111111117", "Bruce Springteen", Instant.now(), 0.00);
+		new Product("11111111117", "Bruce Springteen", Instant.now(), 0.00);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCInvalido() {
-		Product p = new Product("111111111107", "Bruce Springteen", Instant.now(), 0.00);
+		new Product("111111111107", "Bruce Springteen", Instant.now(), 0.00);
 	}
 }

@@ -65,7 +65,6 @@ public class VendingMachineTest {
 		assertNotNull(m);
 		m.comprobarLineas();
 	}
-	
 
 	@Test
 	public void testRellenarLinea() {
@@ -80,7 +79,7 @@ public class VendingMachineTest {
 		assertNotNull(m);
 		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00), -1);
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testRellenarLineaFueraDelRango() {
 		m = new VendingMachine(0, 1, 10);
@@ -142,7 +141,7 @@ public class VendingMachineTest {
 		assertNotNull(m);
 		m.compra(null, 0);
 	}
-	
+
 	@Test
 	public void testComprobarLinea() {
 		m = new VendingMachine(0, 1, 10);

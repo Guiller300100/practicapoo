@@ -1,8 +1,6 @@
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
 import fabricante.externo.tarjetas.TarjetaMonedero;
 
 /**
@@ -121,7 +119,7 @@ public class VendingMachine {
 		if (producto == null) {
 			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {
-			if (numlinea < 0|| numlinea >= lineas.size()) {
+			if (numlinea < 0 || numlinea >= lineas.size()) {
 				throw (new IllegalArgumentException("Numero de linea mal introducida"));
 			} else {
 

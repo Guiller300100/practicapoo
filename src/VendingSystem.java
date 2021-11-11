@@ -140,16 +140,20 @@ public class VendingSystem {
 	 *         vacía
 	 */
 	public void listaMaquinasLineaVacia() {
-		Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
-		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
-			if (iterante.getValue().comprobarLineas()) {
-				maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
+		if (maquinas.size() == 0) {
+			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
+		} else {
+			Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
+			for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
+				if (iterante.getValue().comprobarLineas()) {
+					maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
+				}
 			}
+			if (!maquinasLineaVacia.values().isEmpty()) {
+				maquinasLineaVacia.values();
+			} else
+				throw (new IllegalArgumentException("No hay ninguna maquina con alguna linea vacia"));
 		}
-		if (!maquinasLineaVacia.values().isEmpty()) {
-			maquinasLineaVacia.values();
-		} else
-			throw (new IllegalArgumentException("No hay ninguna maquina con alguna linea vacia"));
 	}
 
 	/**

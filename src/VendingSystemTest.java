@@ -22,7 +22,7 @@ public class VendingSystemTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testVendingSystemNulo() {
-		VendingSystem t = new VendingSystem(null);
+		new VendingSystem(null);
 	}
 
 	@Test
@@ -116,6 +116,17 @@ public class VendingSystemTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testListaMaquinasLineaVaciaNoHayMaquinas() {
+		vs.listaMaquinasLineaVacia();
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testListaMaquinasLineaVaciaNoHayNingunaVacia() {
+		vs.nuevaMaquina(1, 1, 10);
+		assertNotNull(vs.getMaquina(1));
+		vs.nuevaMaquina(2, 1, 10);
+		assertNotNull(vs.getMaquina(2));
+		vs.getMaquina(2).rellenarLinea(p, 0);
+		vs.getMaquina(1).rellenarLinea(p, 0);
 		vs.listaMaquinasLineaVacia();
 	}
 

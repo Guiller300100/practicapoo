@@ -1,7 +1,7 @@
 /**
  * Representa las funcionalidades y atributos de una línea, la cual se encuentra
  * en una máquina y contiene un cierto número de un tipo de producto que puede
- * como máximo alcanzar un valor tope.
+ * como máximo alcanzar un valor máximo.
  * 
  * @author guirodr
  * @author josbarb
@@ -17,9 +17,11 @@ public class Linea {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param producto    producto contenido en la línea
-	 * @param profundidad número entero indicando el máximo de productos que puede
-	 *                    contener la línea
+	 * @param producto    					producto contenido en la línea
+	 * @param profundidad 					número entero indicando el máximo de 
+	 * 										productos que puede contener la línea
+	 * @throws IllegalArgumentException		si la máxima capacidad de la línea es 
+	 * 										nula o negativa
 	 */
 	public Linea(Product producto, int profundidad) {
 			if (profundidad > 0) {
@@ -35,7 +37,8 @@ public class Linea {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param producto producto de la línea a rellenar
+	 * @param producto 						producto de la línea a rellenar
+	 * @throws IllegalArgumentException		si el producto es nulo
 	 */
 	public void rellenar(Product producto) {
 		if (producto == null) {

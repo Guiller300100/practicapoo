@@ -17,7 +17,9 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param sistema_maquina mapa
+	 * @param sistema_maquina		mapa correspondiente a la red de máquinas a 
+	 * 								crear
+	 * @throws IllegalArgumentException si el mapa es nulo
 	 */
 	public VendingSystem(Map<Integer, VendingMachine> sistema_maquina) {
 		if (sistema_maquina == null) {
@@ -28,9 +30,9 @@ public class VendingSystem {
 	}
 
 	/**
-	 * Para coger el mapa de maquinas entero
+	 * Devuelve la red de máquinas
 	 * 
-	 * @return
+	 * @return mapa correspondiente a la red de máquinas
 	 */
 
 	public Map<Integer, VendingMachine> getMaquinas() {
@@ -50,8 +52,8 @@ public class VendingSystem {
 	 *                    un mismo tipo que pueden ser contenidos por cada línea de
 	 *                    la máquina
 	 * @return
-	 * @throws InvalidParameterException si el identificador ya corresponde a una
-	 *                                   máquina de la red
+	 * @throws IllegalArgumentException si el identificador ya corresponde a una
+	 *                                   máquina de la red de máquinas
 	 * @see VendingMachine
 	 */
 	public void nuevaMaquina(int id, int numLineas, int profundidad) {
@@ -64,10 +66,15 @@ public class VendingSystem {
 	}
 
 	/**
-	 * Para coger una maquina especifica.
+	 * Devuelve la máquina correspondiente a un identificador
 	 * 
-	 * @param id
-	 * @return
+	 * @param id		número entero indicando el número identificador de la 
+	 * 					máquina vending
+	 * @return máquina vending correspondiente al identificador en la red de 
+	 * máquinas
+	 * @throws IllegalArgumentException		si el identificador no se corresponde
+	 * 										con ninguna máquina de la red de 
+	 * 										máquinas
 	 */
 
 	public VendingMachine getMaquina(int id) {
@@ -84,6 +91,9 @@ public class VendingSystem {
 	 * @author guirodr
 	 * @author josbarb
 	 * @param clave número entero indicando el identificador de la máquina a borrar
+	 * @throws IllegalArgumentException		si el identificador no se corresponde
+	 * 										con ninguna máquina de la red de 
+	 * 										máquinas 
 	 */
 	public void borrarMaquina(int clave) {
 		if (maquinas.containsKey(clave)) {
@@ -98,6 +108,7 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
+	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
 	 */
 	public void listaMaquinas() {
 		if (maquinas.size() == 0) {
@@ -114,6 +125,7 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @return total número entero indicando el número de máquinas vending
 	 *         operativas en la red
+	 * @throws IllegalArgumentException	si la red de máquinas no contiene ninguna máquina
 	 */
 	public int maquinasOperativas() {
 		if (maquinas.size() == 0) {
@@ -138,6 +150,7 @@ public class VendingSystem {
 	 * @author josbarb
 	 * @return maquinasLineaVacia lista de máquinas de la red con al menos una línea
 	 *         vacía
+	 * @throws IllegalArgumentException	si no hay ninguna máquina de la red con alguna línea vacía
 	 */
 	public void listaMaquinasLineaVacia() {
 		Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();

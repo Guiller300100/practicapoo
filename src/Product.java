@@ -21,12 +21,18 @@ public class Product {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param cod
-	 * @param nom    String que indica el nombre del producto
-	 * @param fecha  fecha de consumo preferente del producto
-	 * @param precio número de tipo doble que indica el precio del producto
-	 * @throws InvalidParameterException si el dígito de control del UPC dado no
-	 *                                   verifica su validez
+	 * @param cod							cadena de caracteres correspondiendo al número entero 
+	 * 				identificador de un producto
+	 * @param nom   						String que indica el nombre del 
+	 * 										producto
+	 * @param fecha							fecha de consumo preferente del 
+	 * 										producto
+	 * @param precio						número de tipo doble que indica el 
+	 * 										precio del producto
+	 * @throws IllegalArgumentException 	si alguna de las características del 
+	 * 										producto son nulas
+	 * @throws IllegalArgumentException 	si el dígito de control del UPC dado no
+	 *                                   	verifica su validez
 	 */
 	public Product(String cod, String nom, Instant fecha, double precio) {
 		if (cod == null || nom == null || fecha == null) {
@@ -38,7 +44,7 @@ public class Product {
 				this.fecha = fecha;
 				this.precio = precio;
 			} else {
-				throw new IllegalArgumentException("UPC introducido es erroneo");
+				throw new IllegalArgumentException("UPC introducido es erróneo");
 			}
 		}
 	}
@@ -48,8 +54,8 @@ public class Product {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @return precio número de tipo doble representando el precio del producto
-	 *         tratado
+	 * @return precio		número de tipo doble representando el precio del 
+	 * 						producto tratado
 	 */
 	public double getPrecio() {
 		return precio;
@@ -60,8 +66,10 @@ public class Product {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param precio número de tipo doble representando el nuevo precio del producto
-	 *               tratado
+	 * @param precio						número de tipo doble representando el 
+	 * 										nuevo precio del producto tratado
+	 * @throws IllegalArgumentException		si el precio no tiene valor positivo o 
+	 * 										nulo
 	 */
 	public void setPrecio(double precio) {
 		if (precio < 0) {
@@ -72,10 +80,13 @@ public class Product {
 	}
 
 	/**
-	 * Aqui se valida el UPC de un producto a crear y se ve si esta bien o no
+	 * Devuelve una variable booleana tras determinar si el UPC identificador de un 
+	 * producto es válido o no.
 	 * 
-	 * @param UPC
-	 * @return
+	 * @param UPC	cadena de caracteres correspondiendo al número entero 
+	 * 				identificador de un producto
+	 * @return variable booleana indicando si el UPC identificador de un producto
+	 *		   es válido (true) o no (false)
 	 */
 
 	public boolean validarUPC(String UPC) {

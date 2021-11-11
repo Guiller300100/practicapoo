@@ -1,8 +1,6 @@
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
 import fabricante.externo.tarjetas.TarjetaMonedero;
 
 /**
@@ -19,7 +17,6 @@ public class VendingMachine {
 	private int id;
 	private boolean estado;
 	private boolean lineaVacia;
-	private static String credencial_compra = "6Z1y00Nm31aA-571";
 	ArrayList<Linea> lineas = new ArrayList<Linea>();
 
 	/**
@@ -29,7 +26,7 @@ public class VendingMachine {
 	 * @author josbarb
 	 * @param identificador					número entero indicando el número 
 	 * 										identificador de la máquina
-	 * @param numlineas     				número entero indicando el número de 
+	 * @param numLineas     				número entero indicando el número de 
 	 * 										líneas contenidas en la máquina
 	 * @param profundidad   				número entero indicando el número máximo de 
 	 * 										productos de un mismo tipo que pueden 
@@ -57,8 +54,8 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param estado variable booleana indicando si la máquina está operativa (valor
-	 *               true) o fuera de servicio (valor false)
+	 * @param estado	variable booleana indicando si la máquina está operativa (valor
+	 *               	true) o fuera de servicio (valor false)
 	 */
 	public void setEstado(boolean estado) {
 		this.estado = estado;
@@ -69,8 +66,8 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @return estado variable booleana indicando si la máquina está operativa
-	 *         (valor true) o fuera de servicio (valor false)
+	 * @return estado	variable booleana indicando si la máquina está operativa
+	 *         			(valor true) o fuera de servicio (valor false)
 	 */
 	public boolean getEstado() {
 		return this.estado;
@@ -81,10 +78,10 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param numLinea		número entero indicando el índice de una línea en la 
-	 * 						máquina tratada
+	 * @param numLinea					número entero indicando el índice de una línea en la 
+	 * 									máquina tratada
 	 * @return lineas.get(numlinea)		línea correspondiente al índice numlinea en el
-	 *         conjunto de lineas correspondiente a la máquina tratada
+	 *         							conjunto de lineas correspondiente a la máquina tratada
 	 */
 	public Linea getLinea(int numLinea) {
 		return lineas.get(numLinea);
@@ -96,8 +93,8 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @return lineaVacia variable booleana indicando si
-	 *         la máquina tiene al menos una línea vacía o no
+	 * @return lineaVacia	variable booleana indicando si
+	 *         				la máquina tiene al menos una línea vacía o no
 	 */
 	public boolean comprobarLineas() {
 		for (Linea linea : lineas) {
@@ -116,9 +113,9 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param producto producto con el que rellenar la línea
-	 * @param numLinea número entero indicando el índice de una línea en la máquina
-	 *                 tratada
+	 * @param producto						producto con el que rellenar la línea
+	 * @param numLinea 						número entero indicando el índice de una línea en la máquina
+	 *                 						tratada
 	 * @throws IllegalArgumentException		si el producto es nulo
 	 * @throws IllegalArgumentException		si la línea es negativa
 	 */
@@ -127,15 +124,15 @@ public class VendingMachine {
 		if (producto == null) {
 			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {
-			if (numLinea < 0) {
-				throw (new IllegalArgumentException("Línea negativa"));
+			if (numLinea < 0 || numLinea >= lineas.size()) {
+				throw (new IllegalArgumentException("Numero de linea mal introducida"));
 			} else {
-
 				getLinea(numLinea).rellenar(producto);
 				this.comprobarLineas();
 			}
 		}
 	}
+
 	/**
 	 * Realiza la compra en de un producto contenido en una de las líneas de una
 	 * máquina, en caso de que sea posible (saldo suficiente y línea conteniendo el
@@ -143,20 +140,22 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param t        tarjeta monedero con la que el cliente desea comprar el
-	 *                 producto.
-	 * @param numLinea variable entera indicando la línea de la que se está
-	 *                 comprando un producto.
-	 * @throws IllegalArgumentException si la tarjeta es nula
-	 * @throws IllegalArgumentException si la tarjeta no tiene saldo
-	 * @throws IllegalArgumentException si la línea de la que se quiere comprar
-	 *                                   está vacía
-	 * @see getSaldoActual
-	 * @see comprobarLinea
-	 * @see productoComprado
-	 * @see descontarDelSaldo
+	 * @param t        						tarjeta monedero con la que el cliente desea comprar el
+	 *                 						producto.
+	 * @param numLinea						variable entera indicando la línea de la que se está
+	 *                 						comprando un producto.
+	 * @param credencialCompra				cadena de caracteres componiendo el credencial necesario
+	 * 										para descontar saldo de la tarjeta monedero
+	 * @throws IllegalArgumentException		si la tarjeta es nula
+	 * @throws IllegalArgumentException		si la tarjeta no tiene saldo
+	 * @throws IllegalArgumentException		si la línea de la que se quiere comprar
+	 *                                   	está vacía
+	 * @see TarjetaMonedero#getSaldoActual()
+	 * @see VendingMachine#comprobarLinea(int)
+	 * @see Linea#productoComprado()
+	 * @see TarjetaMonedero#descontarDelSaldo(String, double)
 	 */
-	public void compra(TarjetaMonedero t, int numLinea) {
+	public void compra(TarjetaMonedero t, int numLinea, String credencialCompra) {
 		if (t == null) {
 			throw (new IllegalArgumentException("Tarjeta es nula"));
 		} else {
@@ -166,7 +165,7 @@ public class VendingMachine {
 						throw (new IllegalArgumentException("Tarjeta sin saldo suficiente"));
 					} else {
 						lineas.get(numLinea).productoComprado();
-						t.descontarDelSaldo(credencial_compra, lineas.get(numLinea).producto.getPrecio());
+						t.descontarDelSaldo(credencialCompra, lineas.get(numLinea).producto.getPrecio());
 					}
 				} else {
 					throw (new IllegalArgumentException("Línea vacía"));
@@ -180,12 +179,12 @@ public class VendingMachine {
 	/**
 	 * Devuelve una variable booleana indicando si una línea está vacía o no.
 	 * 
-	 * @param numLinea		número entero indicando la línea a comprobar
-	 * @return variable booleana indicando si la línea está vacía (true) o no 
-	 * 					(false)
+	 * @param numLinea						número entero indicando la línea a comprobar
+	 * @return variable 					booleana indicando si la línea está vacía (true) o no (false)
 	 * @throws IllegalArgumentException		si el número indicando la línea es 
 	 * 										negativo
 	 */
+
 	public boolean comprobarLinea(int numLinea) {
 		if (numLinea < 0) {
 			throw (new IllegalArgumentException("Línea negativa"));

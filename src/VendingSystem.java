@@ -9,7 +9,7 @@ import java.util.*;
  * @author josbarb
  */
 public class VendingSystem {
-	/* El constructor es por si nos pasan un sistema de maquinas ya creado */
+	/* El constructor es por si nos pasan un sistema de máquinas ya creado */
 	private Map<Integer, VendingMachine> maquinas = new HashMap<>();
 
 	/**
@@ -17,9 +17,8 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param sistema_maquina		mapa correspondiente a la red de máquinas a 
-	 * 								crear
-	 * @throws IllegalArgumentException si el mapa es nulo
+	 * @param sistema_maquina				mapa correspondiente a la red de máquinas a crear
+	 * @throws IllegalArgumentException		si el mapa es nulo
 	 */
 	public VendingSystem(Map<Integer, VendingMachine> sistema_maquina) {
 		if (sistema_maquina == null) {
@@ -32,7 +31,7 @@ public class VendingSystem {
 	/**
 	 * Devuelve la red de máquinas
 	 * 
-	 * @return mapa correspondiente a la red de máquinas
+	 * @return maquinas		mapa correspondiente a la red de máquinas
 	 */
 
 	public Map<Integer, VendingMachine> getMaquinas() {
@@ -44,16 +43,15 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param id          número entero indicando el número identificador de la
-	 *                    máquina
-	 * @param numLineas   número entero indicando el número de líneas contenidas en
-	 *                    la máquina
-	 * @param profundidad número entero indicando el número máximo de productos de
-	 *                    un mismo tipo que pueden ser contenidos por cada línea de
-	 *                    la máquina
-	 * @return
-	 * @throws IllegalArgumentException si el identificador ya corresponde a una
-	 *                                   máquina de la red de máquinas
+	 * @param id          					número entero indicando el número identificador de la
+	 *                    					máquina
+	 * @param numLineas   					número entero indicando el número de líneas contenidas en
+	 *                    					la máquina
+	 * @param profundidad 					número entero indicando el número máximo de productos de
+	 *                    					un mismo tipo que pueden ser contenidos por cada línea de
+	 *                    					la máquina
+	 * @throws IllegalArgumentException		si el identificador ya corresponde a una
+	 *                                   	máquina de la red de máquinas
 	 * @see VendingMachine
 	 */
 	public void nuevaMaquina(int id, int numLineas, int profundidad) {
@@ -68,13 +66,11 @@ public class VendingSystem {
 	/**
 	 * Devuelve la máquina correspondiente a un identificador
 	 * 
-	 * @param id		número entero indicando el número identificador de la 
-	 * 					máquina vending
-	 * @return máquina vending correspondiente al identificador en la red de 
-	 * máquinas
+	 * @param id							número entero indicando el número identificador de la 
+	 * 										máquina vending
+	 * @return máquina vending correspondiente al identificador en la red de máquinas
 	 * @throws IllegalArgumentException		si el identificador no se corresponde
-	 * 										con ninguna máquina de la red de 
-	 * 										máquinas
+	 * 										con ninguna máquina de la red de máquinas
 	 */
 
 	public VendingMachine getMaquina(int id) {
@@ -90,10 +86,10 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param clave número entero indicando el identificador de la máquina a borrar
+	 * @param clave 						número entero indicando el identificador 
+	 * 										de la máquina a borrar
 	 * @throws IllegalArgumentException		si el identificador no se corresponde
-	 * 										con ninguna máquina de la red de 
-	 * 										máquinas 
+	 * 										con ninguna máquina de la red de máquinas 
 	 */
 	public void borrarMaquina(int clave) {
 		if (maquinas.containsKey(clave)) {
@@ -123,9 +119,9 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @return total número entero indicando el número de máquinas vending
-	 *         operativas en la red
-	 * @throws IllegalArgumentException	si la red de máquinas no contiene ninguna máquina
+	 * @return total 						número entero indicando el número de máquinas vending
+	 *         								operativas en la red
+	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
 	 */
 	public int maquinasOperativas() {
 		if (maquinas.size() == 0) {
@@ -148,21 +144,23 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @return maquinasLineaVacia lista de máquinas de la red con al menos una línea
-	 *         vacía
-	 * @throws IllegalArgumentException	si no hay ninguna máquina de la red con alguna línea vacía
+	 * @throws IllegalArgumentException		si no hay ninguna máquina de la red con alguna línea vacía
 	 */
 	public void listaMaquinasLineaVacia() {
-		Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
-		for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
-			if (iterante.getValue().comprobarLineas()) {
-				maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
-			}
-		}
-		if (!maquinasLineaVacia.values().isEmpty()) {
-			maquinasLineaVacia.values();
-		} else
+		if (maquinas.size() == 0) {
 			throw (new IllegalArgumentException("No hay ninguna maquina creada"));
+		} else {
+			Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
+			for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
+				if (iterante.getValue().comprobarLineas()) {
+					maquinasLineaVacia.put(iterante.getKey(), iterante.getValue());
+				}
+			}
+			if (!maquinasLineaVacia.values().isEmpty()) {
+				maquinasLineaVacia.values();
+			} else
+				throw (new IllegalArgumentException("No hay ninguna maquina con alguna linea vacia"));
+		}
 	}
 
 	/**
@@ -170,9 +168,9 @@ public class VendingSystem {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param id     número entero indicando el número identificador de la máquina
-	 * @param estado variable booleana indicando si la máquina está operativa (valor
-	 *               true) o fuera de servicio (valor false)
+	 * @param id     	número entero indicando el número identificador de la máquina
+	 * @param estado 	variable booleana indicando si la máquina está operativa (valor
+	 *               	true) o fuera de servicio (valor false)
 	 */
 	public void modificarEstado(int id, boolean estado) {
 		maquinas.get(id).setEstado(estado);

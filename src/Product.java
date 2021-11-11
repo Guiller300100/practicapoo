@@ -22,7 +22,7 @@ public class Product {
 	 * @author guirodr
 	 * @author josbarb
 	 * @param cod							cadena de caracteres correspondiendo al número entero 
-	 * 				identificador de un producto
+	 * 										identificador de un producto
 	 * @param nom   						String que indica el nombre del 
 	 * 										producto
 	 * @param fecha							fecha de consumo preferente del 
@@ -85,8 +85,8 @@ public class Product {
 	 * 
 	 * @param UPC	cadena de caracteres correspondiendo al número entero 
 	 * 				identificador de un producto
-	 * @return variable booleana indicando si el UPC identificador de un producto
-	 *		   es válido (true) o no (false)
+	 * @return 	variable booleana indicando si el UPC identificador de un producto
+	 *		   	es válido (true) o no (false)
 	 */
 
 	public boolean validarUPC(String UPC) {

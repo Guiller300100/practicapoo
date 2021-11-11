@@ -27,18 +27,18 @@ public class VendingMachine {
 	 * @author josbarb
 	 * @param identificador número entero indicando el número identificador de la
 	 *                      máquina
-	 * @param numlineas     número entero indicando el número de líneas contenidas
+	 * @param numLineas     número entero indicando el número de líneas contenidas
 	 *                      en la máquina
 	 * @param profundidad   número entero indicando el número máximo de productos de
 	 *                      un mismo tipo que pueden ser contenidos por cada línea
 	 *                      de la máquina
 	 */
-	public VendingMachine(int identificador, int numlineas, int profundidad) {
-		if (identificador >= 0 && numlineas > 0 && profundidad > 0) {
+	public VendingMachine(int identificador, int numLineas, int profundidad) {
+		if (identificador >= 0 && numLineas > 0 && profundidad > 0) {
 			id = identificador;
 			estado = true;
 			lineaVacia = true;
-			for (int i = 0; i < numlineas; i++) {
+			for (int i = 0; i < numLineas; i++) {
 				lineas.add(new Linea(null, profundidad));
 			}
 		} else {
@@ -75,13 +75,13 @@ public class VendingMachine {
 	 * 
 	 * @author guirodr
 	 * @author josbarb
-	 * @param numlinea número entero indicando el índice de una línea en la máquina
+	 * @param numLinea número entero indicando el índice de una línea en la máquina
 	 *                 tratada
-	 * @return lineas.get(numlinea) línea correspondiente al índice numlinea en el
+	 * @return lineas.get(numLinea) línea correspondiente al índice numLinea en el
 	 *         conjunto de lineas correspondiente a la máquina tratada
 	 */
-	public Linea getLinea(int numlinea) {
-		return lineas.get(numlinea);
+	public Linea getLinea(int numLinea) {
+		return lineas.get(numLinea);
 	}
 
 	/**
@@ -111,19 +111,19 @@ public class VendingMachine {
 	 * @author guirodr
 	 * @author josbarb
 	 * @param producto producto con el que rellenar la línea
-	 * @param numlinea número entero indicando el índice de una línea en la máquina
+	 * @param numLinea número entero indicando el índice de una línea en la máquina
 	 *                 tratada
 	 */
 
-	public void rellenarLinea(Product producto, int numlinea) {
+	public void rellenarLinea(Product producto, int numLinea) {
 		if (producto == null) {
 			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {
-			if (numlinea < 0 || numlinea >= lineas.size()) {
+			if (numLinea < 0 || numLinea >= lineas.size()) {
 				throw (new IllegalArgumentException("Numero de linea mal introducida"));
 			} else {
 
-				getLinea(numlinea).rellenar(producto);
+				getLinea(numLinea).rellenar(producto);
 				this.comprobarLineas();
 			}
 		}
@@ -138,7 +138,7 @@ public class VendingMachine {
 	 * @author josbarb
 	 * @param t        tarjeta monedero con la que el cliente desea comprar el
 	 *                 producto.
-	 * @param numlinea variable entera indicando la línea de la que se está
+	 * @param numLinea variable entera indicando la línea de la que se está
 	 *                 comprando un producto.
 	 * @throws InvalidParameterException si la tarjeta no tiene saldo
 	 * @throws InvalidParameterException si la línea de la que se quiere comprar
@@ -148,17 +148,17 @@ public class VendingMachine {
 	 * @see productoComprado
 	 * @see descontarDelSaldo
 	 */
-	public void compra(TarjetaMonedero t, int numlinea) {
+	public void compra(TarjetaMonedero t, int numLinea) {
 		if (t == null) {
 			throw (new IllegalArgumentException("Tarjeta es nula"));
 		} else {
 			if (t.getSaldoActual() != 0.0) {
-				if (!comprobarLinea(numlinea)) {
-					if (lineas.get(numlinea).producto.getPrecio() > t.getSaldoActual()) {
+				if (!comprobarLinea(numLinea)) {
+					if (lineas.get(numLinea).producto.getPrecio() > t.getSaldoActual()) {
 						throw (new IllegalArgumentException("Tarjeta sin saldo suficiente"));
 					} else {
-						lineas.get(numlinea).productoComprado();
-						t.descontarDelSaldo(credencial_compra, lineas.get(numlinea).producto.getPrecio());
+						lineas.get(numLinea).productoComprado();
+						t.descontarDelSaldo(credencial_compra, lineas.get(numLinea).producto.getPrecio());
 					}
 				} else {
 					throw (new IllegalArgumentException("Línea vacía"));

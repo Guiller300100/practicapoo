@@ -1,6 +1,5 @@
 /**
  * @author guirodr
- * @author josbarb
  **/
 
 import static org.junit.Assert.*;

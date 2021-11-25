@@ -1,6 +1,5 @@
 /**
  * @author guirodr
- * @author josbarb
  * 
  * Representa las funcionalidades y atributos de una línea, la cual se encuentra
  * en una máquina y contiene un cierto número de un tipo de producto que puede
@@ -19,7 +18,6 @@ public class Linea {
 	 * Crea una nueva línea vacía con las características indicadas.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param producto    					producto contenido en la línea
 	 * @param profundidad 					número entero indicando el máximo de 
 	 * 										productos que puede contener la línea
@@ -39,7 +37,6 @@ public class Linea {
 	 * con el máximo posible para dicha línea.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param producto 						producto de la línea a rellenar
 	 * @throws IllegalArgumentException		si el producto es nulo
 	 */
@@ -56,7 +53,6 @@ public class Linea {
 	 * Decrementa el número de productos contenidos en una línea de 1.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 */
 	public void productoComprado() {
 		stock--;

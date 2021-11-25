@@ -1,6 +1,5 @@
 /**
  * @author guirodr
- * @author josbarb
  **/
 
 import java.security.InvalidParameterException;
@@ -15,7 +14,6 @@ import fabricante.externo.tarjetas.TarjetaMonedero;
  * descontar saldo de la tarjeta monedero del cliente.
  * 
  * @author guirodr
- * @author josbarb
  */
 public class VendingMachine {
 
@@ -28,7 +26,6 @@ public class VendingMachine {
 	 * Crea una nueva máquina vending con las características indicadas.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param identificador					número entero indicando el número 
 	 * 										identificador de la máquina
 	 * @param numLineas     				número entero indicando el número de 
@@ -58,7 +55,6 @@ public class VendingMachine {
 	 * Modifica el estado de una máquina.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param estado	variable booleana indicando si la máquina está operativa (valor
 	 *               	true) o fuera de servicio (valor false)
 	 */
@@ -70,7 +66,6 @@ public class VendingMachine {
 	 * Devuelve el estado de una máquina.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @return estado	variable booleana indicando si la máquina está operativa
 	 *         			(valor true) o fuera de servicio (valor false)
 	 */
@@ -82,7 +77,6 @@ public class VendingMachine {
 	 * Devuelve la línea correspondiente al índice indicado.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param numLinea					número entero indicando el índice de una línea en la 
 	 * 									máquina tratada
 	 * @return lineas.get(numlinea)		línea correspondiente al índice numlinea en el
@@ -97,7 +91,6 @@ public class VendingMachine {
 	 * true a la booleana indicando la presencia de líneas vacías.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @return lineaVacia	variable booleana indicando si
 	 *         				la máquina tiene al menos una línea vacía o no
 	 */
@@ -117,7 +110,6 @@ public class VendingMachine {
 	 * producto.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param producto						producto con el que rellenar la línea
 	 * @param numLinea 						número entero indicando el índice de una línea en la máquina
 	 *                 						tratada
@@ -144,7 +136,6 @@ public class VendingMachine {
 	 * producto no estando vacía).
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param t        						tarjeta monedero con la que el cliente desea comprar el
 	 *                 						producto.
 	 * @param numLinea						variable entera indicando la línea de la que se está

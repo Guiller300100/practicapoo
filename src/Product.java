@@ -1,6 +1,5 @@
 /**
  * @author guirodr
- * @author josbarb
  **/
 
 import java.security.InvalidParameterException;
@@ -25,7 +24,6 @@ public class Product {
 	 * Crea un nuevo producto con las características indicadas.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param cod							cadena de caracteres correspondiendo al número entero 
 	 * 										identificador de un producto
 	 * @param nom   						String que indica el nombre del 
@@ -58,7 +56,6 @@ public class Product {
 	 * Devuelve el precio de un producto.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @return precio		número de tipo doble representando el precio del 
 	 * 						producto tratado
 	 */
@@ -70,7 +67,6 @@ public class Product {
 	 * Modifica el precio de un producto.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param precio						número de tipo doble representando el 
 	 * 										nuevo precio del producto tratado
 	 * @throws IllegalArgumentException		si el precio no tiene valor positivo o 

@@ -1,6 +1,5 @@
 /**
  * @author guirodr
- * @author josbarb
  **/
 
 import java.security.InvalidParameterException;
@@ -21,7 +20,6 @@ public class VendingSystem {
 	 * Crea una nueva red de máquinas con las características indicadas.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param sistema_maquina				mapa correspondiente a la red de máquinas a crear
 	 * @throws IllegalArgumentException		si el mapa es nulo
 	 */
@@ -47,7 +45,6 @@ public class VendingSystem {
 	 * Crea una nueva máquina en la red.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param id          					número entero indicando el número identificador de la
 	 *                    					máquina
 	 * @param numLineas   					número entero indicando el número de líneas contenidas en
@@ -90,7 +87,6 @@ public class VendingSystem {
 	 * Borra la máquina correspondiente a un identificador de la red de máquinas.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param clave 						número entero indicando el identificador 
 	 * 										de la máquina a borrar
 	 * @throws IllegalArgumentException		si el identificador no se corresponde
@@ -108,7 +104,6 @@ public class VendingSystem {
 	 * Muestra la lista completa de máquinas de la red.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
 	 * @return lista completa de máquinas de la red de máquinas
 	 */
@@ -124,7 +119,6 @@ public class VendingSystem {
 	 * Devuelve el número de máquinas vending operativas en la red.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @return total 						número entero indicando el número de máquinas vending
 	 *         								operativas en la red
 	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
@@ -149,7 +143,6 @@ public class VendingSystem {
 	 * vacía.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @throws IllegalArgumentException		si no hay ninguna máquina de la red con alguna línea vacía
 	 * @return lista de máquinas de la red de máquinas con alguna línea vacía
 	 */
@@ -174,7 +167,6 @@ public class VendingSystem {
 	 * Da un estado (operativa/fuera de servicio) a una máquina de la red.
 	 * 
 	 * @author guirodr
-	 * @author josbarb
 	 * @param id     	número entero indicando el número identificador de la máquina
 	 * @param estado 	variable booleana indicando si la máquina está operativa (valor
 	 *               	true) o fuera de servicio (valor false)

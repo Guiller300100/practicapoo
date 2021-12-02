@@ -1,13 +1,11 @@
-package Tests;
-/**
- * @author guirodr
- **/
-import Clases.*;
+package cests;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
 
 import org.junit.Test;
+
+import clases.*;
 
 public class LineaTest {
 

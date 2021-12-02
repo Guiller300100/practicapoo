@@ -1,9 +1,8 @@
-package Tests;
+package cests;
 /**
  * @author guirodr
  **/
 
-import Clases.*;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
@@ -11,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+
+import clases.*;
 
 public class VendingSystemTest {
 

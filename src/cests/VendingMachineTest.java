@@ -1,9 +1,8 @@
-package Tests;
+package cests;
 /**
  * @author guirodr
  **/
 
-import Clases.*;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import clases.*;
 import fabricante.externo.tarjetas.TarjetaMonedero;
 
 public class VendingMachineTest {

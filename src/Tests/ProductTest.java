@@ -1,7 +1,9 @@
+package Tests;
 /**
  * @author guirodr
  **/
 
+import Clases.*;
 import static org.junit.Assert.*;
 
 import java.time.Instant;

@@ -1,7 +1,8 @@
+package Tests;
 /**
  * @author guirodr
  **/
-
+import Clases.*;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
@@ -10,9 +11,10 @@ import org.junit.Test;
 
 public class LineaTest {
 
+	Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
+	
 	@Test
 	public void testLinea() {
-		Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
 		Linea l = new Linea(p, 10);
 		assertNotNull(l);
@@ -20,21 +22,18 @@ public class LineaTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testLineaProfundidadNegativa() {
-		Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
-		Linea l = new Linea(p, -10);
+		new Linea(p, -10);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testLineaProfundidadNula() {
-		Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
-		Linea l = new Linea(p, 0);
+		new Linea(p, 0);
 	}
 
 	@Test
 	public void testRellenar() {
-		Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
 		Linea l = new Linea(p, 10);
 		assertNotNull(l);
@@ -43,14 +42,13 @@ public class LineaTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testRellenarProductoNulo() {
-		Linea l = new Linea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00), 10);
+		Linea l = new Linea(p, 10);
 		assertNotNull(l);
 		l.rellenar(null);
 	}
 
 	@Test
 	public void testProductoComprado() {
-		Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 		assertNotNull(p);
 		Linea l = new Linea(p, 10);
 		assertNotNull(l);

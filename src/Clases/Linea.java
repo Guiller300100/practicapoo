@@ -1,3 +1,4 @@
+package Clases;
 /**
  * @author guirodr
  * 
@@ -12,7 +13,7 @@ public class Linea {
 
 	public Product producto;
 	public int stock;
-	public int maxStock;
+	private int maxStock;
 
 	/**
 	 * Crea una nueva línea vacía con las características indicadas.

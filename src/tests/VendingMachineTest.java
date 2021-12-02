@@ -1,4 +1,4 @@
-package cests;
+package tests;
 /**
  * @author guirodr
  **/

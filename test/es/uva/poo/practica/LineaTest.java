@@ -1,15 +1,14 @@
-package tests;
+package es.uva.poo.practica;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
 
 import org.junit.Test;
 
-import clases.*;
 
 public class LineaTest {
 
-	Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
+	private Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 	
 	@Test
 	public void testLinea() {

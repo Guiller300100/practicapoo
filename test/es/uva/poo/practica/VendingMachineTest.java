@@ -1,4 +1,4 @@
-package tests;
+package es.uva.poo.practica;
 /**
  * @author guirodr
  **/
@@ -6,15 +6,14 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
-import java.util.ArrayList;
 
 import org.junit.Test;
 
-import clases.*;
 import fabricante.externo.tarjetas.TarjetaMonedero;
 
 public class VendingMachineTest {
 
+	private String nombre="Bruce Springsteen";
 	private VendingMachine m;
 	private TarjetaMonedero t = new TarjetaMonedero("A156Bv09_1zXo894");
 
@@ -76,21 +75,21 @@ public class VendingMachineTest {
 	public void testRellenarLinea() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00), 0);
+		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 0.00), 0);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testRellenarLineaNegativo() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00), -1);
+		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 0.00), -1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testRellenarLineaFueraDelRango() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00), 1);
+		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 0.00), 1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -105,7 +104,7 @@ public class VendingMachineTest {
 		m = new VendingMachine(0, 2, 10);
 		assertNotNull(m);
 		t.recargaSaldo("A156Bv09_1zXo894", 1);
-		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 1), 1);
+		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 1), 1);
 		m.compra(t, 1,"6Z1y00Nm31aA-571");
 	}
 
@@ -129,7 +128,7 @@ public class VendingMachineTest {
 		m = new VendingMachine(0, 2, 10);
 		assertNotNull(m);
 		t.recargaSaldo("A156Bv09_1zXo894", 1);
-		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 3), 0);
+		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 3), 0);
 		m.compra(t, 0, "6Z1y00Nm31aA-571");
 	}
 

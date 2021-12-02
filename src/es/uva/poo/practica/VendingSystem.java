@@ -1,9 +1,8 @@
-package clases;
+package es.uva.poo.practica;
 /**
  * @author guirodr
  **/
 
-import java.security.InvalidParameterException;
 import java.util.*;
 
 /**
@@ -24,11 +23,11 @@ public class VendingSystem {
 	 * @param sistema_maquina				mapa correspondiente a la red de máquinas a crear
 	 * @throws IllegalArgumentException		si el mapa es nulo
 	 */
-	public VendingSystem(Map<Integer, VendingMachine> sistema_maquina) {
-		if (sistema_maquina == null) {
+	public VendingSystem(Map<Integer, VendingMachine> sistemamaquinas) {
+		if (sistemamaquinas == null) {
 			throw new IllegalArgumentException("El mapa es nulo");
 		} else {
-			maquinas.putAll(sistema_maquina);
+			maquinas.putAll(sistemamaquinas);
 		}
 	}
 
@@ -108,11 +107,11 @@ public class VendingSystem {
 	 * @throws IllegalArgumentException		si la red de máquinas no contiene ninguna máquina
 	 * @return lista completa de máquinas de la red de máquinas
 	 */
-	public ArrayList<VendingMachine> listaMaquinas() {
+	public List<VendingMachine> listaMaquinas() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna máquina creada"));
+			throw (new IllegalArgumentException("No hay ninguna máquina en el sistema"));
 		} else {
-			return new ArrayList<VendingMachine>(maquinas.values());
+			return new ArrayList<>(maquinas.values());
 		}
 	}
 
@@ -147,9 +146,9 @@ public class VendingSystem {
 	 * @throws IllegalArgumentException		si no hay ninguna máquina de la red con alguna línea vacía
 	 * @return lista de máquinas de la red de máquinas con alguna línea vacía
 	 */
-	public ArrayList<VendingMachine> listaMaquinasLineaVacia() {
+	public List<VendingMachine> listaMaquinasLineaVacia() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna máquina creada"));
+			throw (new IllegalArgumentException("No se ha creado ninguna maquina"));
 		} else {
 			Map<Integer, VendingMachine> maquinasLineaVacia = new HashMap<>();
 			for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
@@ -158,7 +157,7 @@ public class VendingSystem {
 				}
 			}
 			if (!maquinasLineaVacia.values().isEmpty()) {
-				return new ArrayList<VendingMachine>(maquinasLineaVacia.values());
+				return new ArrayList<>(maquinasLineaVacia.values());
 			} else
 				throw (new IllegalArgumentException("No hay ninguna máquina con alguna línea vacia"));
 		}

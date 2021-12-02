@@ -1,4 +1,4 @@
-package tests;
+package es.uva.poo.practica;
 /**
  * @author guirodr
  **/
@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import clases.*;
 
 public class VendingSystemTest {
 
@@ -19,7 +18,7 @@ public class VendingSystemTest {
 
 	private VendingSystem vs = new VendingSystem(m);
 
-	Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
+	private Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 
 	@Test
 	public void testVendingSystem() {

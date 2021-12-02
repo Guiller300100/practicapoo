@@ -1,4 +1,4 @@
-package clases;
+package es.uva.poo.practica;
 /**
  * @author guirodr
  * 
@@ -11,8 +11,8 @@ package clases;
  */
 public class Linea {
 
-	public Product producto;
-	public int stock;
+	private Product producto;
+	private int stock;
 	private int maxStock;
 
 	/**
@@ -27,7 +27,7 @@ public class Linea {
 	 */
 	public Linea(Product producto, int profundidad) {
 		if (profundidad > 0) {
-			this.producto = producto;
+			this.setProducto(producto);
 			maxStock = profundidad;
 		} else
 			throw new IllegalArgumentException("la profundidad es erronea");
@@ -45,8 +45,8 @@ public class Linea {
 		if (producto == null) {
 			throw new IllegalArgumentException("Producto nulo");
 		} else {
-			this.producto = producto;
-			stock = maxStock;
+			this.setProducto(producto);
+			setStock(maxStock);
 		}
 	}
 
@@ -56,7 +56,23 @@ public class Linea {
 	 * @author guirodr
 	 */
 	public void productoComprado() {
-		stock--;
+		setStock(getStock() - 1);
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public Product getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Product producto) {
+		this.producto = producto;
 	}
 
 }

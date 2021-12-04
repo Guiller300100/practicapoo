@@ -20,7 +20,6 @@ public class VendingMachine {
 
 	private int id;
 	private boolean estado;
-	private boolean lineaVacia;
 	ArrayList<Linea> lineas = new ArrayList<>();
 
 	/**
@@ -41,7 +40,6 @@ public class VendingMachine {
 		if (identificador >= 0 && numLineas > 0 && profundidad > 0) {
 			id = identificador;
 			estado = true;
-			lineaVacia = true;
 			for (int i = 0; i < numLineas; i++) {
 				lineas.add(new Linea(null, profundidad));
 			}
@@ -94,14 +92,15 @@ public class VendingMachine {
 	 *         una línea vacía o no
 	 */
 	public boolean comprobarLineas() {
+		boolean v = false;
 		for (Linea linea : lineas) {
 			if (linea.getStock() == 0) {
-				lineaVacia = true;
-				return lineaVacia;
+				v = true;
+				return v;
 			} else
-				lineaVacia = false;
+				v = false;
 		}
-		return lineaVacia;
+		return v;
 	}
 
 	/**
@@ -184,7 +183,6 @@ public class VendingMachine {
 		if (numLinea < 0) {
 			throw (new IllegalArgumentException("Línea negativa"));
 		}
-
 		boolean r;
 		if (getLinea(numLinea).getStock() == 0) {
 			r = true;
@@ -193,5 +191,9 @@ public class VendingMachine {
 		}
 		return r;
 
+	}
+
+	public int getId() {
+		return id;
 	}
 }

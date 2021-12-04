@@ -117,7 +117,7 @@ public class VendingSystemTest {
 		vs.nuevaMaquina(2, 1, 10);
 		assertNotNull(vs.getMaquina(2));
 		vs.getMaquina(2).rellenarLinea(p, 0);
-		vs.listaMaquinasLineaVacia();
+		assertNotNull(vs.listaMaquinasLineaVacia());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -125,7 +125,7 @@ public class VendingSystemTest {
 		vs.listaMaquinasLineaVacia();
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testListaMaquinasLineaVaciaNoHayNingunaVacia() {
 		vs.nuevaMaquina(1, 1, 10);
 		assertNotNull(vs.getMaquina(1));

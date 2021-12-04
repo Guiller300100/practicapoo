@@ -15,7 +15,8 @@ public class VendingMachineTest {
 
 	private String nombre="Bruce Springsteen";
 	private VendingMachine m;
-	private TarjetaMonedero t = new TarjetaMonedero("A156Bv09_1zXo894");
+	private static String credencial="A156Bv09_1zXo894";
+	private TarjetaMonedero t = new TarjetaMonedero(credencial);
 
 	@Test
 	public void testVendingMachine() {
@@ -103,7 +104,7 @@ public class VendingMachineTest {
 	public void testCompra() {
 		m = new VendingMachine(0, 2, 10);
 		assertNotNull(m);
-		t.recargaSaldo("A156Bv09_1zXo894", 1);
+		t.recargaSaldo(credencial, 1);
 		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 1), 1);
 		m.compra(t, 1,"6Z1y00Nm31aA-571");
 	}
@@ -112,14 +113,14 @@ public class VendingMachineTest {
 	public void testCompraLineaVacia() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		t.recargaSaldo("A156Bv09_1zXo894", 1);
+		t.recargaSaldo(credencial, 1);
 		m.compra(t, 0,"6Z1y00Nm31aA-571");
 	}
 	@Test(expected = IllegalArgumentException.class)
 	public void testCompraLineaNegativa() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		t.recargaSaldo("A156Bv09_1zXo894", 1);
+		t.recargaSaldo("credencial", 1);
 		m.compra(t, -1, "6Z1y00Nm31aA-571");
 	}
 
@@ -127,7 +128,7 @@ public class VendingMachineTest {
 	public void testCompraDineroInsuficiente() {
 		m = new VendingMachine(0, 2, 10);
 		assertNotNull(m);
-		t.recargaSaldo("A156Bv09_1zXo894", 1);
+		t.recargaSaldo(credencial, 1);
 		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 3), 0);
 		m.compra(t, 0, "6Z1y00Nm31aA-571");
 	}
@@ -151,5 +152,19 @@ public class VendingMachineTest {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
 		assertTrue(m.comprobarLinea(0));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testComprobarLineaNegativa() {
+		m = new VendingMachine(0, 1, 10);
+		assertNotNull(m);
+		m.comprobarLinea(-1);
+	}
+	
+	@Test
+	public void testgetId() {
+		m = new VendingMachine(0, 1, 10);
+		assertNotNull(m);
+		assertEquals(0,m.getId());
 	}
 }

@@ -38,7 +38,7 @@ public class VendingSystem {
 	 */
 
 	public Map<Integer, VendingMachine> getMaquinas() {
-		return maquinas;
+		return new HashMap<>(maquinas);
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class VendingSystem {
 			if (!maquinasLineaVacia.values().isEmpty()) {
 				return new ArrayList<>(maquinasLineaVacia.values());
 			} else
-				throw (new IllegalArgumentException("No hay ninguna máquina con alguna línea vacia"));
+				return new ArrayList<>();
 		}
 	}
 

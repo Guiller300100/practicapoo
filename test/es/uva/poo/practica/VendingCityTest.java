@@ -12,23 +12,23 @@ import java.util.Map;
 import org.junit.Test;
 
 
-public class VendingSystemTest {
+public class VendingCityTest {
 
 	private Map<Integer, VendingMachine> m = new HashMap<>();
 
-	private VendingSystem vs = new VendingSystem(m);
+	private VendingCity vs = new VendingCity(m);
 
 	private Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 
 	@Test
 	public void testVendingSystem() {
-		VendingSystem t = new VendingSystem(m);
+		VendingCity t = new VendingCity(m);
 		assertNotNull(t);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testVendingSystemNulo() {
-		new VendingSystem(null);
+		new VendingCity(null);
 	}
 
 	@Test

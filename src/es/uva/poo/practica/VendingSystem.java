@@ -18,4 +18,11 @@ public class VendingSystem {
 		}
 	}
 
+	public void borrarSede(String provincia) {
+		if(redprovincias.containsKey(provincia)) {
+			redprovincias.remove(provincia);	
+		}else {
+			throw new IllegalArgumentException("El codigo de la provincia no esta en la red");
+		}
+	}
 }

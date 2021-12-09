@@ -1,18 +1,21 @@
 package es.uva.poo.practica;
 
 import java.util.*;
+
 public class VendingSystem {
 
-	private Map<String, Map<Integer, VendingMachine>> redprovincias = new HashMap<>();
-	
+	private Map<String, VendingCity> redprovincias = new HashMap<>();
+
 	public VendingSystem() {
 
-		
 	}
-	
+
 	public void crearSede(String provincia, Map<Integer, VendingMachine> maquinas) {
-		
-		redprovincias.put(provincia, new VendingCity(maquinas).getMaquinas());
+		if (provincia == null) {
+			throw new IllegalArgumentException("El codigo de la provincia es nulo");
+		} else {
+			redprovincias.put(provincia, new VendingCity(maquinas));
+		}
 	}
 
 }

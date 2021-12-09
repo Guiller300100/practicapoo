@@ -6,29 +6,31 @@ package es.uva.poo.practica;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.junit.Test;
 
 
 public class VendingCityTest {
 
-	private Map<Integer, VendingMachine> m = new HashMap<>();
-
-	private VendingCity vs = new VendingCity(m);
+	private List<VendingMachine> m = new ArrayList<>();
+	private String provincia = "Valladolid";
+	private VendingCity vs = new VendingCity(m, provincia);
 
 	private Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
 
 	@Test
-	public void testVendingSystem() {
-		VendingCity t = new VendingCity(m);
+	public void testVendingCity() {
+		VendingMachine maquina1 = new VendingMachine(1, 1, 1);
+		m.add(maquina1);
+		m.add(maquina1);
+		VendingCity t = new VendingCity(m, provincia);
 		assertNotNull(t);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testVendingSystemNulo() {
-		new VendingCity(null);
+	public void testVendingCityNulo() {
+		new VendingCity(null, provincia);
 	}
 
 	@Test
@@ -144,4 +146,11 @@ public class VendingCityTest {
 		assertFalse(vs.getMaquina(1).getEstado());
 	}
 
+	@Test
+	public void testMaquinasTotales() {
+		vs.nuevaMaquina(1, 5, 10);
+		assertNotNull(vs.getMaquina(1));
+		assertEquals(1, vs.maquinasTotales());
+	}
+	
 }

@@ -14,7 +14,7 @@ import java.time.Instant;
  * @author guirodr
  * @author josbarb
  */
-public class Product {
+public class Product extends Vendible {
 
 	private double precio;
 	private Instant fecha;
@@ -36,6 +36,7 @@ public class Product {
 	 *                                  verifica su validez
 	 */
 	public Product(String cod, String nom, Instant caducidad, double precio) {
+		super(nom, cod);
 		if (cod == null || nom == null || caducidad == null) {
 			throw new IllegalArgumentException("Argumento mal introducido");
 		} else {
@@ -116,6 +117,7 @@ public class Product {
 		return r;
 	}
 
+	@Override
 	public String getUpc() {
 		return upc;
 	}
@@ -131,6 +133,7 @@ public class Product {
 		this.fecha = fecha;
 	}
 
+	@Override
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,23 +1,22 @@
 package es.uva.poo.practica;
+
 /**
  * @author guirodr
  **/
 
 import static org.junit.Assert.*;
 
-import java.time.Instant;
 import java.util.*;
 
 import org.junit.Test;
-
 
 public class VendingCityTest {
 
 	private List<VendingMachine> m = new ArrayList<>();
 	private String provincia = "Valladolid";
-	private VendingCity vs = new VendingCity(m, provincia);
-
-	private Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
+	private VendingCity vc = new VendingCity(m, provincia);
+	private Product p = new Product("111111111117", "Bruce Springsteen", new GregorianCalendar(2021, 1, 30), 0.00);
+	VendingMachine maquina1 = new VendingMachine(1, 1, 1);
 
 	@Test
 	public void testVendingCity() {
@@ -26,6 +25,8 @@ public class VendingCityTest {
 		m.add(maquina1);
 		VendingCity t = new VendingCity(m, provincia);
 		assertNotNull(t);
+		assertEquals(1, t.maquinasTotales());
+		assertEquals(maquina1, t.getMaquina(1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -35,122 +36,135 @@ public class VendingCityTest {
 
 	@Test
 	public void testNuevaMaquina() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNuevaMaquinaIdNegativo() {
-		vs.nuevaMaquina(-1, 5, 10);
+		VendingMachine maquina1 = new VendingMachine(-1, 1, 1);
+		vc.nuevaMaquina(maquina1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNuevaMaquinaNumLineasNegativo() {
-		vs.nuevaMaquina(1, -5, 10);
+		VendingMachine maquina1 = new VendingMachine(1, -1, 1);
+		vc.nuevaMaquina(maquina1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNuevaMaquinaProfundidadNegativo() {
-		vs.nuevaMaquina(1, 5, -10);
+		VendingMachine maquina1 = new VendingMachine(1, 1, -1);
+		vc.nuevaMaquina(maquina1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNuevaMaquinaIdExiste() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.nuevaMaquina(1, 4, 3);
+		VendingMachine maquina1 = new VendingMachine(1, 1, 1);
+		vc.nuevaMaquina(maquina1);
+		VendingMachine maquina2 = new VendingMachine(1, 1, 1);
+		vc.nuevaMaquina(maquina2);
+		assertNotNull(vc.getMaquina(1));
 	}
 
 	@Test
 	public void testgetMaquina() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testgetMaquinaNoExiste() {
-		vs.getMaquina(1);
+		vc.getMaquina(1);
 	}
 
 	@Test
 	public void testBorrarMaquina() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.borrarMaquina(1);
-		assertEquals(0, vs.getMaquinas().size());
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		vc.borrarMaquina(1);
+		assertEquals(0, vc.getMaquinas().size());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testBorrarMaquinaNoExisteId() {
-		vs.borrarMaquina(2);
+		vc.borrarMaquina(2);
 	}
 
 	@Test
 	public void testListaMaquinas() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.listaMaquinas();
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		vc.listaMaquinas();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testListaMaquinasNoHayMaquinas() {
-		vs.listaMaquinas();
+		vc.listaMaquinas();
 	}
 
 	@Test
 	public void testMaquinasOperativas() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.nuevaMaquina(2, 5, 10);
-		assertNotNull(vs.getMaquina(2));
-		vs.modificarEstado(2, false);
-		vs.maquinasOperativas();
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		VendingMachine maquina2 = new VendingMachine(2, 1, 1);
+		vc.nuevaMaquina(maquina2);
+		assertNotNull(vc.getMaquina(2));
+		vc.modificarEstado(2, false);
+		vc.maquinasOperativas();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testMaquinasOperativasNoHayMaquinas() {
-		vs.maquinasOperativas();
+		vc.maquinasOperativas();
 	}
 
 	@Test
 	public void testListaMaquinasLineaVacia() {
-		vs.nuevaMaquina(1, 1, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.nuevaMaquina(2, 1, 10);
-		assertNotNull(vs.getMaquina(2));
-		vs.getMaquina(2).rellenarLinea(p, 0);
-		assertNotNull(vs.listaMaquinasLineaVacia());
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		VendingMachine maquina2 = new VendingMachine(2, 1, 1);
+		vc.nuevaMaquina(maquina2);
+		assertNotNull(vc.getMaquina(2));
+		vc.getMaquina(2).rellenarLinea(p, 0);
+		assertNotNull(vc.listaMaquinasLineaVacia());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testListaMaquinasLineaVaciaNoHayMaquinas() {
-		vs.listaMaquinasLineaVacia();
+		vc.listaMaquinasLineaVacia();
 	}
 
 	@Test
 	public void testListaMaquinasLineaVaciaNoHayNingunaVacia() {
-		vs.nuevaMaquina(1, 1, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.nuevaMaquina(2, 1, 10);
-		assertNotNull(vs.getMaquina(2));
-		vs.getMaquina(2).rellenarLinea(p, 0);
-		vs.getMaquina(1).rellenarLinea(p, 0);
-		vs.listaMaquinasLineaVacia();
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		VendingMachine maquina2 = new VendingMachine(2, 1, 1);
+		vc.nuevaMaquina(maquina2);
+		assertNotNull(vc.getMaquina(2));
+		vc.getMaquina(2).rellenarLinea(p, 0);
+		vc.getMaquina(1).rellenarLinea(p, 0);
+		vc.listaMaquinasLineaVacia();
 	}
 
 	@Test
 	public void testModificarEstado() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
-		vs.modificarEstado(1, false);
-		assertFalse(vs.getMaquina(1).getEstado());
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		vc.modificarEstado(1, false);
+		assertFalse(vc.getMaquina(1).getEstado());
 	}
 
 	@Test
 	public void testMaquinasTotales() {
-		vs.nuevaMaquina(1, 5, 10);
-		assertNotNull(vs.getMaquina(1));
-		assertEquals(1, vs.maquinasTotales());
+		vc.nuevaMaquina(maquina1);
+		assertNotNull(vc.getMaquina(1));
+		assertEquals(1, vc.maquinasTotales());
 	}
-	
+
+	@Test
+	public void testgetProvincia() {
+		assertEquals(provincia, vc.getProvincia());
+	}
+
 }

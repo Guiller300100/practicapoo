@@ -4,7 +4,8 @@ package es.uva.poo.practica;
  * @author guirodr
  **/
 
-import java.time.Instant;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Representa las funcionalidades y atributos de un producto, el cual se puede
@@ -17,7 +18,7 @@ import java.time.Instant;
 public class Product extends Vendible {
 
 	private double precio;
-	private Instant fecha;
+	private GregorianCalendar fecha;
 	private String nombre;
 	private String upc;
 
@@ -35,7 +36,7 @@ public class Product extends Vendible {
 	 * @throws IllegalArgumentException si el dígito de control del UPC dado no
 	 *                                  verifica su validez
 	 */
-	public Product(String cod, String nom, Instant caducidad, double precio) {
+	public Product(String cod, String nom, GregorianCalendar caducidad, double precio) {
 		super(nom, cod);
 		if (cod == null || nom == null || caducidad == null) {
 			throw new IllegalArgumentException("Argumento mal introducido");
@@ -44,7 +45,7 @@ public class Product extends Vendible {
 				setUpc(cod);
 				this.nombre = nom;
 				fecha = caducidad;
-				this.precio = precio;
+				setPrecio(precio);
 			} else {
 				throw new IllegalArgumentException("UPC introducido es erróneo");
 			}
@@ -89,7 +90,7 @@ public class Product extends Vendible {
 	 *         válido (true) o no (false)
 	 */
 
-	public boolean validarUPC(String upc) {
+	private boolean validarUPC(String upc) {
 		boolean r;
 		if (upc.length() != 12 || Double.parseDouble(upc) < 0) {
 			r = false;
@@ -126,11 +127,11 @@ public class Product extends Vendible {
 	public void setUpc(String upc) {
 		this.upc = upc;
 	}
-	public Instant getFecha() {
+	public GregorianCalendar getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Instant fecha) {
+	public void setFecha(GregorianCalendar fecha) {
 		this.fecha = fecha;
 	}
 

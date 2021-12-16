@@ -5,7 +5,7 @@ package es.uva.poo.practica;
 
 import static org.junit.Assert.*;
 
-import java.time.Instant;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -65,7 +65,7 @@ public class VendingMachineTest {
 	public void testComprobarLineas() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00), 0);
+		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", new GregorianCalendar(2021, 1, 30), 0.00), 0);
 		m.comprobarLineas();
 		m = new VendingMachine(1, 1, 10);
 		assertNotNull(m);
@@ -76,21 +76,21 @@ public class VendingMachineTest {
 	public void testRellenarLinea() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 0.00), 0);
+		m.rellenarLinea(new Product("111111111117", nombre, new GregorianCalendar(2021, 1, 30), 0.00), 0);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testRellenarLineaNegativo() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 0.00), -1);
+		m.rellenarLinea(new Product("111111111117", nombre, new GregorianCalendar(2021, 1, 30), 0.00), -1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testRellenarLineaFueraDelRango() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
-		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 0.00), 1);
+		m.rellenarLinea(new Product("111111111117", nombre, new GregorianCalendar(2021, 1, 30), 0.00), 1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -105,7 +105,7 @@ public class VendingMachineTest {
 		m = new VendingMachine(0, 2, 10);
 		assertNotNull(m);
 		t.recargaSaldo(credencial, 1);
-		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 1), 1);
+		m.rellenarLinea(new Product("111111111117", nombre, new GregorianCalendar(2021, 1, 30), 1), 1);
 		m.compra(t, 1,"6Z1y00Nm31aA-571");
 	}
 
@@ -116,6 +116,17 @@ public class VendingMachineTest {
 		t.recargaSaldo(credencial, 1);
 		m.compra(t, 0,"6Z1y00Nm31aA-571");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCompraMaquinaNoOperativa() {
+		m = new VendingMachine(0, 1, 10);
+		assertNotNull(m);
+		t.recargaSaldo(credencial, 1);
+		m.setEstado(false);
+		assertFalse(m.getEstado());
+		m.compra(t, 0,"6Z1y00Nm31aA-571");
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCompraLineaNegativa() {
 		m = new VendingMachine(0, 1, 10);
@@ -129,7 +140,7 @@ public class VendingMachineTest {
 		m = new VendingMachine(0, 2, 10);
 		assertNotNull(m);
 		t.recargaSaldo(credencial, 1);
-		m.rellenarLinea(new Product("111111111117", nombre, Instant.now(), 3), 0);
+		m.rellenarLinea(new Product("111111111117", nombre, new GregorianCalendar(2021, 1, 30), 3), 0);
 		m.compra(t, 0, "6Z1y00Nm31aA-571");
 	}
 

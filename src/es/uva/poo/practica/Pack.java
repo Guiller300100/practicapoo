@@ -5,6 +5,7 @@ import java.util.*;
 public class Pack extends Vendible {
 
 	private Product[] productosPack;
+	private final static double descuento = 0.8;
 
 	public Pack(String id, String nom, Product[] p) {
 		super(nom, id);
@@ -32,7 +33,7 @@ public class Pack extends Vendible {
 		for (int i = 0; i < productosPack.length; i++) {
 			precioTotal += productosPack[i].getPrecio();
 		}
-		return (0.8 * precioTotal);
+		return (descuento * precioTotal);
 	}
 
 	public int numeroProductos() {

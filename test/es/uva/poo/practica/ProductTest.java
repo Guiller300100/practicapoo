@@ -5,7 +5,8 @@ package es.uva.poo.practica;
 
 import static org.junit.Assert.*;
 
-import java.time.Instant;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class ProductTest {
 
 	private String nombre = "Bruce Springteen";
 	private String upc="111111111117";
-	private Product p = new Product(upc, nombre, Instant.now(), 0.00);
+	private Product p = new Product(upc, nombre, new GregorianCalendar(2021, 1, 30), 0.00);
 	
 	
 	@Test
@@ -24,12 +25,12 @@ public class ProductTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductUPCNulo() {
-		assertNotNull(new Product(null, nombre, Instant.now(), 0.00));
+		assertNotNull(new Product(null, nombre, new GregorianCalendar(2021, 1, 30), 0.00));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductNombreNulo() {
-		assertNotNull(new Product(upc, null, Instant.now(), 0.00));
+		assertNotNull(new Product(upc, null, new GregorianCalendar(2021, 1, 30), 0.00));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -56,35 +57,34 @@ public class ProductTest {
 	}
 
 	@Test
-	public void testValidarUPC() {
-		assertNotNull(p);
-		assertTrue(p.validarUPC(p.getUpc()));
+	public void testGetUPC() {
+		assertEquals(upc, p.getUpc());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCNegativo() {
-		new Product("-11111111117", nombre, Instant.now(), 0.00);
+		new Product("-11111111117", nombre, new GregorianCalendar(2021, 1, 30), 0.00);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCCorto() {
-		new Product("11111111117", nombre, Instant.now(), 0.00);
+		new Product("11111111117", nombre, new GregorianCalendar(2021, 1, 30), 0.00);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCInvalido() {
-		new Product("111111111107", nombre, Instant.now(), 0.00);
+		new Product("111111111107", nombre, new GregorianCalendar(2021, 1, 30), 0.00);
 	}
 	
 	@Test
 	public void testgetFecha() {
-		assertEquals(Instant.now(), p.getFecha());
+		assertEquals(new GregorianCalendar(2021, 1, 30), p.getFecha());
 	}
 	
 	@Test
 	public void testsetFecha() {
-		p.setFecha(Instant.now());
-		assertEquals(Instant.now(), p.getFecha());
+		p.setFecha(new GregorianCalendar(2021, 1, 30));
+		assertEquals(new GregorianCalendar(2021, 1, 30), p.getFecha());
 	}
 	
 	@Test

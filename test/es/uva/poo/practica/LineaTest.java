@@ -1,14 +1,15 @@
 package es.uva.poo.practica;
 import static org.junit.Assert.*;
 
-import java.time.Instant;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
 
 public class LineaTest {
 
-	private Product p = new Product("111111111117", "Bruce Springsteen", Instant.now(), 0.00);
+	private Product p = new Product("111111111117", "Bruce Springsteen", new GregorianCalendar(2021, 1, 30), 0.00);
 	
 	@Test
 	public void testLinea() {

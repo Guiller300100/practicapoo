@@ -153,6 +153,9 @@ public class VendingMachine {
 		if (t == null) {
 			throw (new IllegalArgumentException("Tarjeta es nula"));
 		} else {
+			if (!this.estado) {
+				throw (new IllegalArgumentException("Maquina no operativa"));
+			}
 			if (t.getSaldoActual() != 0.0) {
 				if (!comprobarLinea(numLinea)) {
 					if (lineas.get(numLinea).getProducto().getPrecio() > t.getSaldoActual()) {

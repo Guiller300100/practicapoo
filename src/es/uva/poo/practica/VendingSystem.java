@@ -10,7 +10,7 @@ public class VendingSystem {
 
 	public VendingSystem(List<VendingCity> sedes) {
 		if (sedes == null) {
-			throw new IllegalArgumentException("El mapa es nulo");
+			throw new IllegalArgumentException("La lista es nula");
 		} else {
 			for (VendingCity sede : sedes) {
 				if (!redprovincias.containsKey(sede.getProvincia())) {

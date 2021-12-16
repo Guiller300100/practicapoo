@@ -63,11 +63,11 @@ public class VendingCity {
 	 *                                  máquina de la red de máquinas
 	 * @see VendingMachine
 	 */
-	public void nuevaMaquina(int id, int numLineas, int profundidad) {
-		if (maquinas.containsKey(id)) {
+	public void nuevaMaquina(VendingMachine m) {
+		if (maquinas.containsKey(m.getId())) {
 			throw (new IllegalArgumentException("ID ya en uso"));
 		} else {
-			maquinas.put(id, new VendingMachine(id, numLineas, profundidad));
+			maquinas.put(m.getId(), m);
 		}
 
 	}
@@ -85,7 +85,8 @@ public class VendingCity {
 
 	public VendingMachine getMaquina(int id) {
 		if (maquinas.containsKey(id)) {
-			return maquinas.get(id);
+			VendingMachine m = maquinas.get(id);
+			return m;
 		} else {
 			throw (new IllegalArgumentException("Maquina con ese ID no existe"));
 		}
@@ -184,10 +185,24 @@ public class VendingCity {
 	public void modificarEstado(int id, boolean estado) {
 		maquinas.get(id).setEstado(estado);
 	}
+	
+	/**
+	 * Devuelve un entero con el numero de maquinas que hay en esa sede, sean operativas o no.
+	 * 
+	 * @author guirodr
+	 * @return entero con el valor de todas las maquinas que tiene esa sede.
+	 */
 
 	public int maquinasTotales() {
 		return maquinas.size();
 	}
+	
+	/**
+	 * Devuelve el codigo de la provincia de la cual es sede.
+	 * 
+	 * @author guirodr
+	 * @return cadena de caracteres refiriendose a la provincia.
+	 */
 	
 	public String getProvincia() {
 		return provincia;

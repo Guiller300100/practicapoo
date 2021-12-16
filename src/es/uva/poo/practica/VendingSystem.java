@@ -2,6 +2,8 @@ package es.uva.poo.practica;
 
 import java.util.*;
 
+
+
 public class VendingSystem {
 
 	private Map<String, VendingCity> redprovincias = new HashMap<>();
@@ -58,6 +60,15 @@ public class VendingSystem {
 
 	public List<String> listaNomProvincias() {
 		return new ArrayList<>(redprovincias.keySet());
+	}
+	
+	public Map<String, Integer> listaMaqProvincias(){
+		Map<String,Integer> m = new HashMap<>();
+		List<String> provincias = new ArrayList<>(redprovincias.keySet());
+		for (String provincia : provincias) {
+			m.put(provincia, redprovincias.get(provincia).maquinasTotales());
+		}
+		return m;
 	}
 
 	public boolean comprobarSede(String provincia) {

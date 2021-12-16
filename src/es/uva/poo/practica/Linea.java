@@ -11,7 +11,7 @@ package es.uva.poo.practica;
  */
 public class Linea {
 
-	private Product producto;
+	private Vendible producto;
 	private int stock;
 	private int maxStock;
 
@@ -41,7 +41,7 @@ public class Linea {
 	 * @param producto 						producto de la línea a rellenar
 	 * @throws IllegalArgumentException		si el producto es nulo
 	 */
-	public void rellenar(Product producto) {
+	public void rellenar(Vendible producto) {
 		if (producto == null) {
 			throw new IllegalArgumentException("Producto nulo");
 		} else {
@@ -67,11 +67,11 @@ public class Linea {
 		this.stock = stock;
 	}
 
-	public Product getProducto() {
+	public Vendible getProducto() {
 		return producto;
 	}
 
-	public void setProducto(Product producto) {
+	public void setProducto(Vendible producto) {
 		this.producto = producto;
 	}
 

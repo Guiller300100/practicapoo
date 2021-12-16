@@ -58,6 +58,7 @@ public class Product extends Vendible {
 	 * @return precio número de tipo doble representando el precio del producto
 	 *         tratado
 	 */
+	@Override
 	public double getPrecio() {
 		return precio;
 	}

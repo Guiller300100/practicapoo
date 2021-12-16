@@ -5,7 +5,7 @@ public abstract class Vendible {
 	private String nombre;
 	private String upc;
 	
-	protected Vendible(String nom, String id) {
+	public Vendible(String nom, String id) {
 		nombre = nom;
 		upc = id;
 	}

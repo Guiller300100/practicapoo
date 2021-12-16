@@ -115,7 +115,7 @@ public class VendingMachine {
 	 * @throws IllegalArgumentException si la línea es negativa
 	 */
 
-	public void rellenarLinea(Product producto, int numLinea) {
+	public void rellenarLinea(Vendible producto, int numLinea) {
 		if (producto == null) {
 			throw (new IllegalArgumentException("Producto es nulo"));
 		} else {

@@ -19,7 +19,6 @@ public class Product extends Vendible {
 
 	private double precio;
 	private GregorianCalendar fecha;
-	private String nombre;
 	private String upc;
 
 	/**
@@ -43,7 +42,6 @@ public class Product extends Vendible {
 		} else {
 			if (validarUPC(cod)) {
 				setUpc(cod);
-				this.nombre = nom;
 				fecha = caducidad;
 				setPrecio(precio);
 			} else {
@@ -119,7 +117,6 @@ public class Product extends Vendible {
 		return r;
 	}
 
-	@Override
 	public String getUpc() {
 		return upc;
 	}
@@ -135,12 +132,4 @@ public class Product extends Vendible {
 		this.fecha = fecha;
 	}
 
-	@Override
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 }

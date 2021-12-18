@@ -12,6 +12,10 @@ import org.junit.Test;
 import fabricante.externo.tarjetas.TarjetaMonedero;
 
 public class VendingMachineTest {
+	
+	/**
+	 * MIRAR
+	 */
 
 	private String nombre="Bruce Springsteen";
 	private VendingMachine m;
@@ -65,11 +69,9 @@ public class VendingMachineTest {
 	public void testComprobarLineas() {
 		m = new VendingMachine(0, 1, 10);
 		assertNotNull(m);
+		assertTrue(m.comprobarLineas());
 		m.rellenarLinea(new Product("111111111117", "Bruce Springsteen", new GregorianCalendar(2021, 1, 30), 0.00), 0);
-		m.comprobarLineas();
-		m = new VendingMachine(1, 1, 10);
-		assertNotNull(m);
-		m.comprobarLineas();
+		assertFalse(m.comprobarLineas());
 	}
 
 	@Test

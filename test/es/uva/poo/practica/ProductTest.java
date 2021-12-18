@@ -20,6 +20,10 @@ public class ProductTest {
 	@Test
 	public void testProduct() {
 		assertNotNull(p);
+		assertEquals(nombre, p.getNombre());
+		assertEquals(upc, p.getUpc());
+		assertEquals(0.0, p.getPrecio(), 0);
+		assertEquals(new GregorianCalendar(2021, 1, 30), p.getFecha());
 	}
 
 	@Test(expected = IllegalArgumentException.class)

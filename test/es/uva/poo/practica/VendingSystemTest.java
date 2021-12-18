@@ -14,7 +14,7 @@ public class VendingSystemTest {
 	private VendingSystem vs;
 
 	@Before
-	public void inizializar() {
+	public void inicializar() {
 		maquinas.add(new VendingMachine(0, 3, 1));
 		sedes.add(new VendingCity(maquinas, "Valladolid"));
 		vs = new VendingSystem(sedes);

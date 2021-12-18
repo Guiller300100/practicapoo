@@ -158,11 +158,11 @@ public class VendingMachine {
 			}
 			if (t.getSaldoActual() != 0.0) {
 				if (!comprobarLinea(numLinea)) {
-					if (lineas.get(numLinea).getProducto().getPrecio() > t.getSaldoActual()) {
+					if (lineas.get(numLinea).getVendible().getPrecio() > t.getSaldoActual()) {
 						throw (new IllegalArgumentException("Tarjeta sin saldo suficiente"));
 					} else {
-						lineas.get(numLinea).productoComprado();
-						t.descontarDelSaldo(credencialCompra, lineas.get(numLinea).getProducto().getPrecio());
+						lineas.get(numLinea).vendibleComprado();
+						t.descontarDelSaldo(credencialCompra, lineas.get(numLinea).getVendible().getPrecio());
 					}
 				} else {
 					throw (new IllegalArgumentException("Línea vacía"));

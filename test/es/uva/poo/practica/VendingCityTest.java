@@ -11,6 +11,10 @@ import java.util.*;
 import org.junit.Test;
 
 public class VendingCityTest {
+	
+	/**
+	 * MIRAR
+	 */
 
 	private List<VendingMachine> m = new ArrayList<>();
 	private String provincia = "Valladolid";

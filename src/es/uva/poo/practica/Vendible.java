@@ -3,21 +3,26 @@ package es.uva.poo.practica;
 public abstract class Vendible {
 
 	private String nombre;
-	private String upc;
+	private String id;
 	
-	public Vendible(String nom, String id) {
+	public Vendible(String nom, String cod) {
 		nombre = nom;
-		upc = id;
+		id = cod;
 	}
 	
-
-	public String getNombre() {
-		return nombre;
-	}
 	
-	public String getUpc() {
-		return upc;
+	public String getId() {
+		return id;
 	}
 	
 	public abstract double getPrecio();
+
+
+	public  String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

@@ -4,7 +4,7 @@ package es.uva.poo.practica;
  * @author guirodr
  **/
 
-import java.util.Date;
+
 import java.util.GregorianCalendar;
 
 /**

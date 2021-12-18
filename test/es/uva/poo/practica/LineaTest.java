@@ -1,7 +1,6 @@
 package es.uva.poo.practica;
 import static org.junit.Assert.*;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.junit.Test;

@@ -13,7 +13,6 @@ import java.util.GregorianCalendar;
  * cantidad máxima definida por la línea en cuestión.
  * 
  * @author guirodr
- * @author josbarb
  */
 public class Product extends Vendible {
 

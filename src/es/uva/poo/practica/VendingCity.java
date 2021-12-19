@@ -7,22 +7,23 @@ package es.uva.poo.practica;
 import java.util.*;
 
 /**
- * Representa las funcionalidades y atributos de una red de máquinas, la cual
- * contiene una serie de máquinas.
+ * Representa las funcionalidades y atributos de una sede de maquinas, la cual
+ * contiene una serie de maquinas.
  * 
  * @author guirodr
  */
 public class VendingCity {
-	/* El constructor es por si nos pasan un sistema de máquinas ya creado */
+	/* El constructor es por si nos pasan un sistema de maquinas ya creado */
 	private Map<Integer, VendingMachine> maquinas = new HashMap<>();
 	private String provincia;
 
 
 	/**
-	 * Crea una nueva red de máquinas con las características indicadas.
+	 * Crea una nueva red de maquinas con las caracteristicas indicadas.
 	 * 
 	 * @author guirodr
-	 * @param sistema_maquina mapa correspondiente a la red de máquinas a crear
+	 * @param sistemamaquinas lista de maquinas con las que crearemos la red cogiendo el id de dentro del objeto VendingMachine
+	 * @param provinc cadena que representa el codigo de la provincia
 	 * @throws IllegalArgumentException si el mapa es nulo
 	 */
 	public VendingCity(List<VendingMachine> sistemamaquinas, String provinc) {
@@ -39,9 +40,9 @@ public class VendingCity {
 	}
 
 	/**
-	 * Devuelve la red de máquinas
+	 * Devuelve la red de maquinas
 	 * 
-	 * @return maquinas mapa correspondiente a la red de máquinas
+	 * @return maquinas mapa correspondiente a la red de maquinas
 	 */
 
 	public Map<Integer, VendingMachine> getMaquinas() {
@@ -49,38 +50,32 @@ public class VendingCity {
 	}
 
 	/**
-	 * Crea una nueva máquina en la red.
+	 * Crea una nueva  en la red.
 	 * 
 	 * @author guirodr
-	 * @param id          número entero indicando el número identificador de la
-	 *                    máquina
-	 * @param numLineas   número entero indicando el número de líneas contenidas en
-	 *                    la máquina
-	 * @param profundidad número entero indicando el número máximo de productos de
-	 *                    un mismo tipo que pueden ser contenidos por cada línea de
-	 *                    la máquina
+	 * @param maq		Un objeto VendingMachine que se va a almacenar en la sede, si no esta metida ya
 	 * @throws IllegalArgumentException si el identificador ya corresponde a una
-	 *                                  máquina de la red de máquinas
+	 *                                   de la red de maquinas
 	 * @see VendingMachine
 	 */
-	public void nuevaMaquina(VendingMachine m) {
-		if (maquinas.containsKey(m.getId())) {
+	public void nuevaMaquina(VendingMachine maq) {
+		if (maquinas.containsKey(maq.getId())) {
 			throw (new IllegalArgumentException("ID ya en uso"));
 		} else {
-			maquinas.put(m.getId(), m);
+			maquinas.put(maq.getId(), maq);
 		}
 
 	}
 
 	/**
-	 * Devuelve la máquina correspondiente a un identificador
+	 * Devuelve la  correspondiente a un identificador
 	 * 
-	 * @param id número entero indicando el número identificador de la máquina
+	 * @param id numero entero indicando el numero identificador de la 
 	 *           vending
-	 * @return máquina vending correspondiente al identificador en la red de
-	 *         máquinas
+	 * @return vending correspondiente al identificador en la red de
+	 *         maquinas
 	 * @throws IllegalArgumentException si el identificador no se corresponde con
-	 *                                  ninguna máquina de la red de máquinas
+	 *                                  ninguna  de la red de maquinas
 	 */
 
 	public VendingMachine getMaquina(int id) {
@@ -93,12 +88,12 @@ public class VendingCity {
 	}
 
 	/**
-	 * Borra la máquina correspondiente a un identificador de la red de máquinas.
+	 * Borra la  correspondiente a un identificador de la red de maquinas.
 	 * 
 	 * @author guirodr
-	 * @param clave número entero indicando el identificador de la máquina a borrar
+	 * @param clave numero entero indicando el identificador de la  a borrar
 	 * @throws IllegalArgumentException si el identificador no se corresponde con
-	 *                                  ninguna máquina de la red de máquinas
+	 *                                  ninguna  de la red de maquinas
 	 */
 	public void borrarMaquina(int clave) {
 		if (maquinas.containsKey(clave)) {
@@ -109,33 +104,33 @@ public class VendingCity {
 	}
 
 	/**
-	 * Muestra la lista completa de máquinas de la red.
+	 * Muestra la lista completa de maquinas de la red.
 	 * 
 	 * @author guirodr
-	 * @throws IllegalArgumentException si la red de máquinas no contiene ninguna
-	 *                                  máquina
-	 * @return lista completa de máquinas de la red de máquinas
+	 * @throws IllegalArgumentException si la red de maquinas no contiene ninguna
+	 *                                  
+	 * @return lista completa de maquinas de la red de maquinas
 	 */
 	public List<VendingMachine> listaMaquinas() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna máquina en el sistema"));
+			throw (new IllegalArgumentException("No hay ninguna  en el sistema"));
 		} else {
 			return new ArrayList<>(maquinas.values());
 		}
 	}
 
 	/**
-	 * Devuelve el número de máquinas vending operativas en la red.
+	 * Devuelve el numero de maquinas vending operativas en la red.
 	 * 
 	 * @author guirodr
-	 * @return total número entero indicando el número de máquinas vending
+	 * @return total numero entero indicando el numero de maquinas vending
 	 *         operativas en la red
-	 * @throws IllegalArgumentException si la red de máquinas no contiene ninguna
-	 *                                  máquina
+	 * @throws IllegalArgumentException si la red de maquinas no contiene ninguna
+	 *                                  
 	 */
 	public int maquinasOperativas() {
 		if (maquinas.size() == 0) {
-			throw (new IllegalArgumentException("No hay ninguna máquina creada"));
+			throw (new IllegalArgumentException("No hay ninguna  creada"));
 		} else {
 			int total = 0;
 			for (Map.Entry<Integer, VendingMachine> iterante : maquinas.entrySet()) {
@@ -149,13 +144,13 @@ public class VendingCity {
 	}
 
 	/**
-	 * Devuelve una lista de todas las máquinas de la red de máquinas con al menos
-	 * una línea vacía.
+	 * Devuelve una lista de todas las maquinas de la red de maquinas con al menos
+	 * una linea vacia.
 	 * 
 	 * @author guirodr
-	 * @throws IllegalArgumentException si no hay ninguna máquina de la red con
-	 *                                  alguna línea vacía
-	 * @return lista de máquinas de la red de máquinas con alguna línea vacía
+	 * @throws IllegalArgumentException si no hay ninguna  de la red con
+	 *                                  alguna linea vacia
+	 * @return lista de maquinas de la red de maquinas con alguna linea vacia, si no tiene ninguna, devolvera una lista vacia
 	 */
 	public List<VendingMachine> listaMaquinasLineaVacia() {
 		if (maquinas.size() == 0) {
@@ -175,11 +170,11 @@ public class VendingCity {
 	}
 
 	/**
-	 * Da un estado (operativa/fuera de servicio) a una máquina de la red.
+	 * Da un estado (operativa/fuera de servicio) a una  de la red.
 	 * 
 	 * @author guirodr
-	 * @param id     número entero indicando el número identificador de la máquina
-	 * @param estado variable booleana indicando si la máquina está operativa (valor
+	 * @param id     numero entero indicando el numero identificador de la 
+	 * @param estado variable booleana indicando si la  está operativa (valor
 	 *               true) o fuera de servicio (valor false)
 	 */
 	public void modificarEstado(int id, boolean estado) {

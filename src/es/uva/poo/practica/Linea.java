@@ -90,6 +90,12 @@ public class Linea {
 		return vendible;
 	}
 
+	/**
+	 * Cambia el Vendible contenido en la linea
+	 * 
+	 * @param vendible Vendible que representa el vendible que se va a meter en una linea
+	 */
+	
 	public void setVendible(Vendible vendible) {
 		this.vendible = vendible;
 	}

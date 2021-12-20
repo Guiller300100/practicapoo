@@ -17,6 +17,7 @@ public class Pack extends Vendible {
 
 	/**
 	 * Crea un nuevo pack de productos con un identificador, un nombre.
+	 * Llama al constructor de Vendible.
 	 * 
 	 * @author guirodr
 	 * @param id 	cadena de caracteres el cual representa el identificador unico del pack.
@@ -79,13 +80,8 @@ public class Pack extends Vendible {
 		return productosPack.length;
 	}
 
-	/**
-	 * Comprueba si un producto esta dentro del pack o no.
-	 * 
-	 * @param upc	identificador del producto que queremos saber si esta en el pack
-	 * @return variable booleana que indica si el producto esta (true) o no (false).
-	 */
-	public boolean comprobarProducto(String upc) {
+
+	private boolean comprobarProducto(String upc) {
 		for (Product producto : productosPack) {
 			if (upc.equals(producto.getUpc())) {
 				return true;

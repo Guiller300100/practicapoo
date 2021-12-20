@@ -63,6 +63,19 @@ public class ProductTest {
 	public void testGetUPC() {
 		assertEquals(upc, p.getUpc());
 	}
+	
+	@Test
+	public void testsetUPC() {
+		p.setUpc("111111111117");
+		assertEquals("111111111117", p.getUpc());
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testsetUPCNoValido() {
+		p.setUpc("111111111111");
+		
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCNegativo() {

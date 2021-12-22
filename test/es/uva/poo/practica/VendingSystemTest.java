@@ -18,13 +18,13 @@ public class VendingSystemTest {
 		maquinas.add(new VendingMachine(0, 3, 1));
 		sedes.add(new VendingCity(maquinas, "Valladolid"));
 		vs = new VendingSystem(sedes);
+		assertNotNull(vs);
 	}
 
 	@Test
 	public void testVendingSystem() {
 		sedes.add(new VendingCity(maquinas, "Valladolid"));
 		vs = new VendingSystem(sedes);
-		assertNotNull(vs);
 		assertTrue(vs.comprobarSede("Valladolid"));
 		assertEquals(1, vs.numProvincias());
 	}
@@ -36,7 +36,6 @@ public class VendingSystemTest {
 
 	@Test
 	public void testCrearSede() {
-		assertNotNull(vs);
 		vs.crearSede("Palencia", maquinas);
 		assertNotNull(vs.getSede("Palencia"));
 		assertEquals(1, vs.numMaquinas("Palencia"));
@@ -44,27 +43,33 @@ public class VendingSystemTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testCrearSedeProvinciaNulo() {
-		assertNotNull(vs);
 		vs.crearSede(null, maquinas);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCrearSedeListaNula() {
+		vs.crearSede("Palencia", null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testCrearSedeExistente() {
-		assertNotNull(vs);
 		vs.crearSede("Valladolid", maquinas);
 	}
 
 	@Test
 	public void testBorrarSede() {
-		assertNotNull(vs);
 		vs.borrarSede("Valladolid");
 		assertEquals(0, vs.numProvincias());
 		assertFalse(vs.comprobarSede("Valladolid"));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testBorrarSedeProvinciaNula() {
+		vs.borrarSede(null);
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testBorrarSedeNoExiste() {
-		assertNotNull(vs);
 		vs.borrarSede("Valladolid");
 		vs.borrarSede("Valladolid");
 	}
@@ -75,6 +80,11 @@ public class VendingSystemTest {
 		vs.borrarSede("Valladolid");
 		assertEquals(0, vs.numMaquinas("Valladolid"));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testNumMaquinasProvinciaNula() {
+		vs.numMaquinas(null);
+	}
 
 	@Test
 	public void testListaMaquinasSede() {
@@ -82,6 +92,11 @@ public class VendingSystemTest {
 		assertNotNull(vs.listaMaquinasSede("Valladolid"));
 		vs.borrarSede("Valladolid");
 		assertEquals(0, vs.listaMaquinasSede("Valladolid").size());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testListaMaquinasSedeProvinciaNula() {
+		vs.listaMaquinasSede(null);
 	}
 	
 	@Test
@@ -102,6 +117,17 @@ public class VendingSystemTest {
 		int i = mapa.get("valladolid");
 		assertEquals(1, i);
 		assertEquals(1, mapa.size());
+	}
+	
+	@Test
+	public void testComprobarSede() {
+		assertTrue(vs.comprobarSede("Valladolid"));
+		assertFalse(vs.comprobarSede("palencia"));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testComprobarSedeProvinciaNula() {
+		vs.comprobarSede(null);
 	}
 
 	@Test

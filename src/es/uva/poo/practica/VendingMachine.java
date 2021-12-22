@@ -36,14 +36,14 @@ public class VendingMachine {
 	 *                                  de lineas o la profundidad no son positivos
 	 */
 	public VendingMachine(int identificador, int numLineas, int profundidad) {
-		if (identificador >= 0 && numLineas > 0 && profundidad > 0) {
-			id = identificador;
-			estado = true;
-			for (int i = 0; i < numLineas; i++) {
-				lineas.add(new Linea(null, profundidad));
-			}
-		} else {
+		if (!(identificador >= 0 && numLineas > 0 && profundidad > 0)) {
 			throw (new IllegalArgumentException("Parametros mal introducidos"));
+		}
+		
+		id = identificador;
+		estado = true;
+		for (int i = 0; i < numLineas; i++) {
+			lineas.add(new Linea(null, profundidad));
 		}
 	}
 
@@ -65,9 +65,13 @@ public class VendingMachine {
 	 * @return estado variable booleana indicando si la maquina esta operativa
 	 *         (valor true) o fuera de servicio (valor false)
 	 */
-	
+
 	public boolean getEstado() {
 		return this.estado;
+	}
+	
+	public int numLineas() {
+		return lineas.size();
 	}
 
 	/**
@@ -78,9 +82,14 @@ public class VendingMachine {
 	 *                 tratada
 	 * @return lineas.get(numlinea) linea correspondiente al indice numlinea en el
 	 *         conjunto de lineas correspondiente a la maquina tratada
+	 * @throws IllegalArgumentException si la linea es negativa o mayor que el
+	 *                                  tamaño
 	 */
-	
+
 	public Linea getLinea(int numLinea) {
+		if (numLinea < 0 || numLinea >= lineas.size()) {
+			throw (new IllegalArgumentException("Numero de linea mal introducido"));
+		}
 		return lineas.get(numLinea);
 	}
 
@@ -113,20 +122,20 @@ public class VendingMachine {
 	 * @param numLinea numero entero indicando el indice de una linea en la maquina
 	 *                 tratada
 	 * @throws IllegalArgumentException si el producto es nulo
-	 * @throws IllegalArgumentException si la linea es negativa
+	 * @throws IllegalArgumentException si la linea es negativa o mayor que el
+	 *                                  tamaño
 	 */
 
 	public void rellenarLinea(Vendible producto, int numLinea) {
 		if (producto == null) {
 			throw (new IllegalArgumentException("Producto es nulo"));
-		} else {
-			if (numLinea < 0 || numLinea >= lineas.size()) {
-				throw (new IllegalArgumentException("Numero de linea mal introducido"));
-			} else {
-				getLinea(numLinea).rellenar(producto);
-				this.comprobarLineas();
-			}
 		}
+		if (numLinea < 0 || numLinea >= lineas.size()) {
+			throw (new IllegalArgumentException("Numero de linea mal introducido"));
+		}
+		getLinea(numLinea).rellenar(producto);
+		this.comprobarLineas();
+
 	}
 
 	/**
@@ -142,11 +151,13 @@ public class VendingMachine {
 	 * @param credencialCompra cadena de caracteres componiendo el credencial
 	 *                         necesario para descontar saldo de la tarjeta monedero
 	 * @throws IllegalArgumentException si la tarjeta es nula
-	 * @throws IllegalArgumentException si la maquina donde quiere comprar esta fuera de servicio
+	 * @throws IllegalArgumentException si la maquina donde quiere comprar esta
+	 *                                  fuera de servicio
 	 * @throws IllegalArgumentException si la tarjeta no tiene saldo
 	 * @throws IllegalArgumentException si la linea de la que se quiere comprar esta
 	 *                                  vacia
-	 * @throws IllegalArgumentException si la tarjeta no tiene el saldo suficienta para comprar
+	 * @throws IllegalArgumentException si la tarjeta no tiene el saldo suficienta
+	 *                                  para comprar
 	 * @see TarjetaMonedero#getSaldoActual()
 	 * @see VendingMachine#comprobarLinea(int)
 	 * @see Linea#productoComprado()
@@ -180,11 +191,12 @@ public class VendingMachine {
 	 * @return variable booleana indicando si la linea esta vacia (true) o no
 	 *         (false)
 	 * @throws IllegalArgumentException si el numero indicando la linea es negativo
+	 *                                  o mayor que el tamaño
 	 */
 
 	public boolean comprobarLinea(int numLinea) {
-		if (numLinea < 0) {
-			throw (new IllegalArgumentException("Linea negativa"));
+		if (numLinea < 0 || numLinea >= lineas.size()) {
+			throw (new IllegalArgumentException("Numero de linea mal introducido"));
 		}
 		boolean r;
 		if (getLinea(numLinea).getStock() == 0) {
@@ -198,10 +210,10 @@ public class VendingMachine {
 
 	/**
 	 * Devuelve una variable entera indicando el identificador de la maquina
-	 *  
+	 * 
 	 * @return id variable entera que indica el identificador de la maquina referida
 	 */
-	
+
 	public int getId() {
 		return id;
 	}

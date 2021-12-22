@@ -22,17 +22,26 @@ public class VendibleTest {
 		assertEquals("111111111117", v.getId());
 		assertEquals("Bruce Springsteen", v.getNombre());
 		assertEquals(0.0, v.getPrecio(), 0);
-	}	
-	
+	}
+
+	@Test
+	public void testGetId() {
+		assertEquals("111111111117", v.getId());
+	}
+
 	@Test
 	public void testGetNombre() {
 		assertEquals("Bruce Springsteen", v.getNombre());
 	}
-	
+
 	@Test
 	public void testSetNombre() {
 		v.setNombre("Julio Iglesias");
 		assertEquals("Julio Iglesias", v.getNombre());
 	}
-	
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetNombreNulo() {
+		v.setNombre(null);
+	}
 }

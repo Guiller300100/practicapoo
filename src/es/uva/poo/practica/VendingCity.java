@@ -17,26 +17,29 @@ public class VendingCity {
 	private Map<Integer, VendingMachine> maquinas = new HashMap<>();
 	private String provincia;
 
-
 	/**
 	 * Crea una nueva red de maquinas con las caracteristicas indicadas.
 	 * 
 	 * @author guirodr
-	 * @param sistemamaquinas lista de maquinas con las que crearemos la red cogiendo el id de dentro del objeto VendingMachine
-	 * @param provinc cadena que representa el codigo de la provincia
+	 * @param sistemamaquinas lista de maquinas con las que crearemos la red
+	 *                        cogiendo el id de dentro del objeto VendingMachine
+	 * @param provinc         cadena que representa el codigo de la provincia
 	 * @throws IllegalArgumentException si el mapa es nulo
+	 * @throws IllegalArgumentException si el codigo de provincia es nulo
 	 */
 	public VendingCity(List<VendingMachine> sistemamaquinas, String provinc) {
 		if (sistemamaquinas == null) {
 			throw new IllegalArgumentException("El mapa es nulo");
-		} else {
-			for (VendingMachine maquina : sistemamaquinas) {
-				if (!maquinas.containsKey(maquina.getId())) {
-					maquinas.put(maquina.getId(), maquina);
-				}
-			}
-			provincia = provinc;
 		}
+		if (provinc == null) {
+			throw new IllegalArgumentException("El codigo de provincia es nulo");
+		}
+		for (VendingMachine maquina : sistemamaquinas) {
+			if (!maquinas.containsKey(maquina.getId())) {
+				maquinas.put(maquina.getId(), maquina);
+			}
+		}
+		provincia = provinc;
 	}
 
 	/**
@@ -50,15 +53,20 @@ public class VendingCity {
 	}
 
 	/**
-	 * Crea una nueva  en la red.
+	 * Crea una nueva en la red.
 	 * 
 	 * @author guirodr
-	 * @param maq		Un objeto VendingMachine que se va a almacenar en la sede, si no esta metida ya
-	 * @throws IllegalArgumentException si el identificador ya corresponde a una
-	 *                                   de la red de maquinas
+	 * @param maq Un objeto VendingMachine que se va a almacenar en la sede, si no
+	 *            esta metida ya
+	 * @throws IllegalArgumentException si el identificador ya corresponde a una de
+	 *                                  la red de maquinas
+	 * @throws IllegalArgumentException si la maquina pasada por parametro es nula
 	 * @see VendingMachine
 	 */
 	public void nuevaMaquina(VendingMachine maq) {
+		if (maq == null) {
+			throw (new IllegalArgumentException("maquina nula"));
+		}
 		if (maquinas.containsKey(maq.getId())) {
 			throw (new IllegalArgumentException("ID ya en uso"));
 		} else {
@@ -68,17 +76,19 @@ public class VendingCity {
 	}
 
 	/**
-	 * Devuelve la  correspondiente a un identificador
+	 * Devuelve la correspondiente a un identificador
 	 * 
-	 * @param id numero entero indicando el numero identificador de la 
-	 *           vending
-	 * @return vending correspondiente al identificador en la red de
-	 *         maquinas
+	 * @param id numero entero indicando el numero identificador de la vending
+	 * @return vending correspondiente al identificador en la red de maquinas
 	 * @throws IllegalArgumentException si el identificador no se corresponde con
-	 *                                  ninguna  de la red de maquinas
+	 *                                  ninguna de la red de maquinas
+	 * @throws IllegalArgumentException si el identificador es un numero negativo
 	 */
 
 	public VendingMachine getMaquina(int id) {
+		if (id < 0) {
+			throw (new IllegalArgumentException("Id para buscar negativo"));
+		}
 		if (maquinas.containsKey(id)) {
 			VendingMachine m = maquinas.get(id);
 			return m;
@@ -88,14 +98,18 @@ public class VendingCity {
 	}
 
 	/**
-	 * Borra la  correspondiente a un identificador de la red de maquinas.
+	 * Borra la correspondiente a un identificador de la red de maquinas.
 	 * 
 	 * @author guirodr
-	 * @param clave numero entero indicando el identificador de la  a borrar
+	 * @param clave numero entero indicando el identificador de la a borrar
 	 * @throws IllegalArgumentException si el identificador no se corresponde con
-	 *                                  ninguna  de la red de maquinas
+	 *                                  ninguna de la red de maquinas
+	 * @throws IllegalArgumentException si el identificador es un numero negativo
 	 */
 	public void borrarMaquina(int clave) {
+		if (clave < 0) {
+			throw (new IllegalArgumentException("Id para buscar negativo"));
+		}
 		if (maquinas.containsKey(clave)) {
 			maquinas.remove(clave);
 		} else {
@@ -108,7 +122,7 @@ public class VendingCity {
 	 * 
 	 * @author guirodr
 	 * @throws IllegalArgumentException si la red de maquinas no contiene ninguna
-	 *                                  
+	 * 
 	 * @return lista completa de maquinas de la red de maquinas
 	 */
 	public List<VendingMachine> listaMaquinas() {
@@ -126,7 +140,7 @@ public class VendingCity {
 	 * @return total numero entero indicando el numero de maquinas vending
 	 *         operativas en la red
 	 * @throws IllegalArgumentException si la red de maquinas no contiene ninguna
-	 *                                  
+	 * 
 	 */
 	public int maquinasOperativas() {
 		if (maquinas.size() == 0) {
@@ -148,9 +162,10 @@ public class VendingCity {
 	 * una linea vacia.
 	 * 
 	 * @author guirodr
-	 * @throws IllegalArgumentException si no hay ninguna  de la red con
-	 *                                  alguna linea vacia
-	 * @return lista de maquinas de la red de maquinas con alguna linea vacia, si no tiene ninguna, devolvera una lista vacia
+	 * @throws IllegalArgumentException si no hay ninguna de la red con alguna linea
+	 *                                  vacia
+	 * @return lista de maquinas de la red de maquinas con alguna linea vacia, si no
+	 *         tiene ninguna, devolvera una lista vacia
 	 */
 	public List<VendingMachine> listaMaquinasLineaVacia() {
 		if (maquinas.size() == 0) {
@@ -170,19 +185,24 @@ public class VendingCity {
 	}
 
 	/**
-	 * Da un estado (operativa/fuera de servicio) a una  de la red.
+	 * Da un estado (operativa/fuera de servicio) a una de la red.
 	 * 
 	 * @author guirodr
-	 * @param id     numero entero indicando el numero identificador de la 
-	 * @param estado variable booleana indicando si la  está operativa (valor
-	 *               true) o fuera de servicio (valor false)
+	 * @param id     numero entero indicando el numero identificador de la
+	 * @param estado variable booleana indicando si la esta operativa (valor true) o
+	 *               fuera de servicio (valor false)
+	 * @throws IllegalArgumentException si el identificador es un numero negativo
 	 */
 	public void modificarEstado(int id, boolean estado) {
+		if (id < 0) {
+			throw (new IllegalArgumentException("Id de maquina negativo"));
+		}
 		maquinas.get(id).setEstado(estado);
 	}
-	
+
 	/**
-	 * Devuelve un entero con el numero de maquinas que hay en esa sede, sean operativas o no.
+	 * Devuelve un entero con el numero de maquinas que hay en esa sede, sean
+	 * operativas o no.
 	 * 
 	 * @author guirodr
 	 * @return entero con el valor de todas las maquinas que tiene esa sede.
@@ -191,14 +211,14 @@ public class VendingCity {
 	public int maquinasTotales() {
 		return maquinas.size();
 	}
-	
+
 	/**
 	 * Devuelve el codigo de la provincia de la cual es sede.
 	 * 
 	 * @author guirodr
 	 * @return cadena de caracteres refiriendose a la provincia.
 	 */
-	
+
 	public String getProvincia() {
 		return provincia;
 	}

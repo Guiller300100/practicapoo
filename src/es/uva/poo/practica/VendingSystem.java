@@ -16,7 +16,7 @@ import java.util.*;
 public class VendingSystem {
 
 	private Map<String, VendingCity> redprovincias = new HashMap<>();
-	
+
 	/**
 	 * Crea un nuevo sistema de sedes, con las caracteristicas indicadas.
 	 * 
@@ -36,69 +36,93 @@ public class VendingSystem {
 			}
 		}
 	}
-	
+
 	/**
-	 * Crea una sede con una lista de maquinas y con un identificador para la provincia
-	 * @param provincia Cadena de caracteres que representa el codigo de la provincia
-	 * @param maquinas Lista de maquinas donde tiene todas las maquinas de la sede
+	 * Crea una sede con una lista de maquinas y con un identificador para la
+	 * provincia
+	 * 
+	 * @param provincia Cadena de caracteres que representa el codigo de la
+	 *                  provincia
+	 * @param maquinas  Lista de maquinas donde tiene todas las maquinas de la sede
 	 * 
 	 * @throws IllegalArgumentException Si el codigo de provincia es nula
+	 * @throws IllegalArgumentException Si la lista de maquinas es nula
 	 * @throws IllegalArgumentException Si el codigo de provincia ya existe
 	 */
 
 	public void crearSede(String provincia, List<VendingMachine> maquinas) {
 		if (provincia == null) {
 			throw new IllegalArgumentException("El codigo de la provincia es nulo");
-		} else if (comprobarSede(provincia)) {
-			throw new IllegalArgumentException("Ya existe una provincia con ese codigo");
-		} else {
-			redprovincias.put(provincia.toLowerCase(), new VendingCity(maquinas, provincia.toLowerCase()));
 		}
+		if (maquinas == null) {
+			throw new IllegalArgumentException("La lista de maquinas es nula");
+		}
+		if (comprobarSede(provincia)) {
+			throw new IllegalArgumentException("Ya existe una provincia con ese codigo");
+		}
+		redprovincias.put(provincia.toLowerCase(), new VendingCity(maquinas, provincia.toLowerCase()));
 	}
-	
+
 	/**
 	 * Borrar una sede del sistema
+	 * 
 	 * @param provincia Cadena que representa el identificador de la provincia
 	 * 
+	 * @throws IllegalArgumentException Si el codigo de provincia es nula
 	 * @throws IllegalArgumentException El codigo de provincia no existe en la red
 	 */
 
 	public void borrarSede(String provincia) {
+		if (provincia == null) {
+			throw new IllegalArgumentException("El codigo de la provincia es nulo");
+		}
 		if (redprovincias.containsKey(provincia.toLowerCase())) {
 			redprovincias.remove(provincia.toLowerCase());
 		} else {
 			throw new IllegalArgumentException("El codigo de la provincia no esta en la red");
 		}
 	}
-	
+
 	/**
-	 * Devuelve el total de maquinas que tiene una sede 
+	 * Devuelve el total de maquinas que tiene una sede
+	 * 
 	 * @param provincia Cadena que representa el identificador de la provincia
 	 * @return numero entero que representa el total de maquinas en una sede
+	 * 
+	 * @throws IllegalArgumentException Si el codigo de provincia es nula
 	 */
 
 	public int numMaquinas(String provincia) {
+		if (provincia == null) {
+			throw new IllegalArgumentException("El codigo de la provincia es nulo");
+		}
 		if (comprobarSede(provincia.toLowerCase())) {
 			return redprovincias.get(provincia.toLowerCase()).maquinasTotales();
 		} else {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Devuelve una lista de maquinas que tiene una sede
+	 * 
 	 * @param provincia Cadena que representa el identificador de una provincia
 	 * @return Lista de las maquinas de una sede
+	 * 
+	 * @throws IllegalArgumentException Si el codigo de provincia es nula
 	 */
 
 	public List<VendingMachine> listaMaquinasSede(String provincia) {
+		if (provincia == null) {
+			throw new IllegalArgumentException("El codigo de la provincia es nulo");
+		}
 		if (comprobarSede(provincia.toLowerCase())) {
 			return redprovincias.get(provincia.toLowerCase()).listaMaquinas();
 		} else {
 			return new ArrayList<>();
 		}
 	}
-	
+
 	/**
 	 * Devuelve el numero de provincias que hay en el sistema
 	 * 
@@ -108,7 +132,7 @@ public class VendingSystem {
 	public int numProvincias() {
 		return redprovincias.size();
 	}
-	
+
 	/**
 	 * Devuelve una lista de cadenas con los nombres de las provincias
 	 * 
@@ -118,15 +142,17 @@ public class VendingSystem {
 	public List<String> listaNomProvincias() {
 		return new ArrayList<>(redprovincias.keySet());
 	}
-	
+
 	/**
-	 * Mapa que contiene la provincia y que tiene asociado el numero de maquinas que tiene esa provincia
+	 * Mapa que contiene la provincia y que tiene asociado el numero de maquinas que
+	 * tiene esa provincia
 	 * 
-	 * @return mapa con una cadena de caracteres como clave y un numero entero como el valor asociado.
+	 * @return mapa con una cadena de caracteres como clave y un numero entero como
+	 *         el valor asociado.
 	 */
-	
-	public Map<String, Integer> listaMaqProvincias(){
-		Map<String,Integer> m = new HashMap<>();
+
+	public Map<String, Integer> listaMaqProvincias() {
+		Map<String, Integer> m = new HashMap<>();
 		List<String> provincias = new ArrayList<>(redprovincias.keySet());
 		for (String provincia : provincias) {
 			m.put(provincia, redprovincias.get(provincia).maquinasTotales());
@@ -136,34 +162,46 @@ public class VendingSystem {
 
 	/**
 	 * Comprueba si una sede existe en la red
-	 * @param provincia cadena de caracteres que representa el indetificador de la provincia
-	 * @return variable booleana que es true si la sede ya esta en la red o false si la sede no esta en la red
+	 * 
+	 * @param provincia cadena de caracteres que representa el indetificador de la
+	 *                  provincia
+	 * @return variable booleana que es true si la sede ya esta en la red o false si
+	 *         la sede no esta en la red
+	 * 
+	 * @throws IllegalArgumentException Si el codigo de provincia es nula
 	 */
 	public boolean comprobarSede(String provincia) {
+		if (provincia == null) {
+			throw (new IllegalArgumentException("Parametro introducido nulo"));
+		}
 		if (!redprovincias.containsKey(provincia.toLowerCase())) {
 			return false;
-		} 
-			return true;
+		}
+		return true;
 	}
-	
+
 	/**
 	 * Devuelve la sede asociada al identificador de la provincia
 	 * 
-	 * @param provincia Cadena de caracteres que representa el identificador de la provincia
+	 * @param provincia Cadena de caracteres que representa el identificador de la
+	 *                  provincia
 	 * 
-	 * @return sedeseleccionada devuelve un objeto VendingCity que representa a una sede completa.
+	 * @return sedeseleccionada devuelve un objeto VendingCity que representa a una
+	 *         sede completa.
+	 * 
+	 * @throws IllegalArgumentException Si el codigo de provincia es nula
 	 */
-	
+
 	public VendingCity getSede(String provincia) {
-		if(provincia == null) {
+		if (provincia == null) {
 			throw (new IllegalArgumentException("Parametro introducido nulo"));
 		}
-		
-		if(!redprovincias.containsKey(provincia.toLowerCase())) {
+
+		if (!redprovincias.containsKey(provincia.toLowerCase())) {
 			throw (new IllegalArgumentException("No hay ninguna sede creada en esa provincia"));
 		}
 		VendingCity sedeseleccionada = redprovincias.get(provincia.toLowerCase());
 		return sedeseleccionada;
 	}
-	
+
 }

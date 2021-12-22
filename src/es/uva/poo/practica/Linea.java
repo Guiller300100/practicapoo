@@ -22,15 +22,16 @@ public class Linea {
 	 * @param vendible    vendible contenido en la linea
 	 * @param profundidad numero entero indicando el maximo de productos que puede
 	 *                    contener la linea
-	 * @throws IllegalArgumentException si la maxima capacidad de la linea es nula
-	 *                                  o negativa
+	 * @throws IllegalArgumentException si la maxima capacidad de la linea es nula o
+	 *                                  negativa
 	 */
-	public Linea(Product vendible, int profundidad) {
-		if (profundidad > 0) {
-			this.setVendible(vendible);
-			maxStock = profundidad;
-		} else
+	public Linea(Vendible vendible, int profundidad) {
+		if (profundidad <= 0) {
 			throw new IllegalArgumentException("la profundidad es erronea");
+		}
+		this.setVendible(vendible);
+		maxStock = profundidad;
+
 	}
 
 	/**
@@ -44,10 +45,9 @@ public class Linea {
 	public void rellenar(Vendible vendible) {
 		if (vendible == null) {
 			throw new IllegalArgumentException("Producto nulo");
-		} else {
+		}
 			this.setVendible(vendible);
 			setStock(maxStock);
-		}
 	}
 
 	/**
@@ -58,24 +58,30 @@ public class Linea {
 	public void vendibleComprado() {
 		setStock(getStock() - 1);
 	}
-	
+
 	/**
 	 * Devuelve el stock que tiene la linea en ese momento
 	 * 
-	 * @return stock numero entero que representa la cantidad de vendibles que quedan
+	 * @return stock numero entero que representa la cantidad de vendibles que
+	 *         quedan
 	 */
 
 	public int getStock() {
 		return stock;
 	}
-	
+
 	/**
 	 * Rellena el stock contenido en la linea
 	 * 
-	 * @param stock entero que representa la cantidad de vendibles que hay en la linea
+	 * @param stock entero que representa la cantidad de vendibles que hay en la
+	 *              linea
+	 * @throws IllegalArgumentException el numero entero introducido es negativo
 	 */
 
 	public void setStock(int stock) {
+		if (stock < 0) {
+			throw new IllegalArgumentException("numero introducido negativo");
+		}
 		this.stock = stock;
 	}
 
@@ -85,7 +91,6 @@ public class Linea {
 	 * @return vendible objeto que se encuentra en la linea
 	 */
 
-	
 	public Vendible getVendible() {
 		return vendible;
 	}
@@ -93,19 +98,20 @@ public class Linea {
 	/**
 	 * Cambia el Vendible contenido en la linea
 	 * 
-	 * @param vendible Vendible que representa el vendible que se va a meter en una linea
+	 * @param vendible Vendible que representa el vendible que se va a meter en una
+	 *                 linea
 	 */
-	
+
 	public void setVendible(Vendible vendible) {
 		this.vendible = vendible;
 	}
-	
+
 	/**
 	 * Devuelve la profundidad que tiene la linea
 	 * 
-	 * @return maxStock numero entero que representa la cantidad de vendibles que puede llegar a almacenar la linea
+	 * @return maxStock numero entero que representa la cantidad de vendibles que
+	 *         puede llegar a almacenar la linea
 	 */
-
 
 	public int getmaxStock() {
 		return maxStock;

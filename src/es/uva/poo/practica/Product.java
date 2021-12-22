@@ -4,7 +4,6 @@ package es.uva.poo.practica;
  * @author guirodr
  **/
 
-
 import java.util.GregorianCalendar;
 
 /**
@@ -21,8 +20,8 @@ public class Product extends Vendible {
 	private String upc;
 
 	/**
-	 * Crea un nuevo producto con las caracteristicas indicadas.
-	 * Llama al constructor de Vendible.
+	 * Crea un nuevo producto con las caracteristicas indicadas. Llama al
+	 * constructor de Vendible.
 	 * 
 	 * @author guirodr
 	 * @param cod    cadena de caracteres correspondiendo al numero entero
@@ -39,24 +38,24 @@ public class Product extends Vendible {
 		super(nom, cod);
 		if (cod == null || nom == null || caducidad == null) {
 			throw new IllegalArgumentException("Argumento mal introducido");
-		} else {
-			if (validarUPC(cod)) {
-				setUpc(cod);
-				fecha = caducidad;
-				setPrecio(precio);
-			} else {
-				throw new IllegalArgumentException("UPC introducido es erroneo");
-			}
 		}
+		if (!validarUPC(cod)) {
+			throw new IllegalArgumentException("UPC introducido es erroneo");
+		}
+		setUpc(cod);
+		fecha = caducidad;
+		setPrecio(precio);
 	}
-
+	
 	/**
 	 * Devuelve el precio de un producto.
 	 * 
 	 * @author guirodr
 	 * @return precio numero de tipo doble representando el precio del producto
 	 *         tratado
+	 * @throws IllegalArgumentException Ha pasado un producto nulo como parametro
 	 */
+	
 	@Override
 	public double getPrecio() {
 		return precio;
@@ -130,23 +129,25 @@ public class Product extends Vendible {
 	 * Modifica el upc de un producto.
 	 * 
 	 * @author guirodr
-	 * @param upc Cadena de caracteres que representa el upc que se quiere asignar al producto.
+	 * @param upc Cadena de caracteres que representa el upc que se quiere asignar
+	 *            al producto.
 	 * @throws IllegalArgumentException si el que se quiere asignar no es valido
 	 */
-	
+
 	public void setUpc(String upc) {
-		if(!validarUPC(upc)) {
+		if (!validarUPC(upc)) {
 			throw (new IllegalArgumentException("El upc no es valido"));
 		}
 		this.upc = upc;
 	}
-	
+
 	/**
 	 * Devuelve la fecha de caducidad del producto.
 	 * 
-	 * @return fecha GregorianCalendar que representa la fecha de caducidad de un producto
+	 * @return fecha GregorianCalendar que representa la fecha de caducidad de un
+	 *         producto
 	 */
-	
+
 	public GregorianCalendar getFecha() {
 		return fecha;
 	}
@@ -154,11 +155,15 @@ public class Product extends Vendible {
 	/**
 	 * Modifica la fecha de caducidad de un producto.
 	 * 
-	 * @param fecha GregorianCalendar que representa la fecha de caducidad que queremos
-	 * 				poner a un producto.
+	 * @param fecha GregorianCalendar que representa la fecha de caducidad que
+	 *              queremos poner a un producto.
+	 * @throws IllegalArgumentException si la fecha introducida es nula
 	 */
-	
+
 	public void setFecha(GregorianCalendar fecha) {
+		if (fecha == null) {
+			throw (new IllegalArgumentException("La fecha introducida es nula"));
+		}
 		this.fecha = fecha;
 	}
 

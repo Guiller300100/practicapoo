@@ -1,4 +1,5 @@
 package es.uva.poo.practica;
+
 /**
  * @author guirodr
  **/
@@ -9,14 +10,12 @@ import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
-
 public class ProductTest {
 
 	private String nombre = "Bruce Springteen";
-	private String upc="111111111117";
+	private String upc = "111111111117";
 	private Product p = new Product(upc, nombre, new GregorianCalendar(2021, 1, 30), 0.00);
-	
-	
+
 	@Test
 	public void testProduct() {
 		assertNotNull(p);
@@ -40,6 +39,11 @@ public class ProductTest {
 	public void testProductFechaNulo() {
 		assertNotNull(new Product(upc, nombre, null, 0.00));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testProductUPCErroneo() {
+		assertNotNull(new Product("111", nombre, new GregorianCalendar(2021, 1, 30), 0.00));
+	}
 
 	@Test
 	public void testGetPrecio() {
@@ -59,24 +63,6 @@ public class ProductTest {
 		p.setPrecio(-1.50);
 	}
 
-	@Test
-	public void testGetUPC() {
-		assertEquals(upc, p.getUpc());
-	}
-	
-	@Test
-	public void testsetUPC() {
-		p.setUpc("111111111117");
-		assertEquals("111111111117", p.getUpc());
-		
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void testsetUPCNoValido() {
-		p.setUpc("111111111111");
-		
-	}
-
 	@Test(expected = IllegalArgumentException.class)
 	public void testValidarUPCNegativo() {
 		new Product("-11111111117", nombre, new GregorianCalendar(2021, 1, 30), 0.00);
@@ -91,26 +77,39 @@ public class ProductTest {
 	public void testValidarUPCInvalido() {
 		new Product("111111111107", nombre, new GregorianCalendar(2021, 1, 30), 0.00);
 	}
+
+	@Test
+	public void testGetUPC() {
+		assertEquals(upc, p.getUpc());
+	}
 	
+	@Test
+	public void testsetUPC() {
+		p.setUpc("111111111117");
+		assertEquals("111111111117", p.getUpc());
+
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testsetUPCNoValido() {
+		p.setUpc("111111111111");
+
+	}
+
 	@Test
 	public void testgetFecha() {
 		assertEquals(new GregorianCalendar(2021, 1, 30), p.getFecha());
 	}
-	
+
 	@Test
 	public void testsetFecha() {
 		p.setFecha(new GregorianCalendar(2021, 1, 30));
 		assertEquals(new GregorianCalendar(2021, 1, 30), p.getFecha());
 	}
-	
-	@Test
-	public void testgetNombre() {
-		assertEquals(nombre, p.getNombre());
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testsetFechaNula() {
+		p.setFecha(null);
 	}
-	
-	@Test
-	public void testsetNombre() {
-		p.setNombre(nombre);
-		assertEquals(nombre, p.getNombre());
-	}
+
 }

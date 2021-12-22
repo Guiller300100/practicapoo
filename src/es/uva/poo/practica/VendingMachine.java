@@ -70,6 +70,11 @@ public class VendingMachine {
 		return this.estado;
 	}
 	
+	/**
+	 * Devuelve el numero total de lineas que tiene la maquina
+	 * @return Numero entero que representa el numero de lineas de la maquina
+	 */
+	
 	public int numLineas() {
 		return lineas.size();
 	}
@@ -160,7 +165,6 @@ public class VendingMachine {
 	 *                                  para comprar
 	 * @see TarjetaMonedero#getSaldoActual()
 	 * @see VendingMachine#comprobarLinea(int)
-	 * @see Linea#productoComprado()
 	 * @see TarjetaMonedero#descontarDelSaldo(String, double)
 	 */
 	public void compra(TarjetaMonedero t, int numLinea, String credencialCompra) {

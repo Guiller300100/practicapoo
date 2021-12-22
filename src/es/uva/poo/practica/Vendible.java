@@ -1,13 +1,13 @@
 package es.uva.poo.practica;
 
-public abstract class Vendible {
+/**
+ * Clase abstracta que hereda a Pack y Product. Representa las funcionalidades y
+ * atributos de un vendible, el cual se almacena en las lineas de una maquina.
+ * 
+ * @author guirodr
+ */
 
-	/**
-	 * Clase abstracta que hereda a Pack y Product. Representa las funcionalidades y
-	 * atributos de un vendible, el cual se almacena en las lineas de una maquina.
-	 * 
-	 * @author guirodr
-	 */
+public abstract class Vendible {
 
 	private String nombre;
 	private String id;

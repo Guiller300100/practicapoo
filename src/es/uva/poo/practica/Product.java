@@ -27,7 +27,7 @@ public class Product extends Vendible {
 	 * @param cod    cadena de caracteres correspondiendo al numero entero
 	 *               identificador de un producto
 	 * @param nom    String que indica el nombre del producto
-	 * @param fecha  fecha de consumo preferente del producto
+	 * @param caducidad  fecha de consumo preferente del producto
 	 * @param precio numero de tipo doble que indica el precio del producto
 	 * @throws IllegalArgumentException si alguna de las caracteristicas del
 	 *                                  producto son nulas

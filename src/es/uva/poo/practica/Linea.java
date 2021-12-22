@@ -1,8 +1,6 @@
 package es.uva.poo.practica;
 
 /**
- * @author guirodr
- * 
  *         Representa las funcionalidades y atributos de una linea, la cual se
  *         encuentra en una maquina y contiene un cierto numero de un tipo de
  *         vendible que puede como maximo alcanzar un valor maximo.

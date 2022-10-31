@@ -43,7 +43,7 @@ public class PackTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testPackArrayPequeño() {
+	public void testPackArrayPequeno() {
 		Product[] p1 = { producto1 };
 		new Pack("1", "chuches", p1);
 	}
